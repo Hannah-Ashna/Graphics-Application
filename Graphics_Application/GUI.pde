@@ -21,7 +21,7 @@ public void GUI(){
   lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   lblFilter.setText("Filters:");
   lblFilter.setTextBold();
-  String[] options = {" - ", "Negative"};
+  String[] options = {" - ", "Negative", "Greyscale"};
   filterOptions = new GDropList(this, 20, 200, 80, 60, 2);
   filterOptions.setItems(options, 0);
   

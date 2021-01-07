@@ -9,12 +9,13 @@ public void Brightness(){
         color newColour = color(r, g, b);
         outputImage.set(x, y, newColour);
       }
-  }
+    }
 }
 
 public void Contrast(){
     for (int y = 0; y < loadedImage.height; y++) {
       for (int x = 0; x < loadedImage.width; x++) {
+        
         color thisPix = loadedImage.get(x, y);
         float r = (red(thisPix) * contrastVal) + brightnessVal;
         float g = (green(thisPix) * contrastVal) + brightnessVal;
@@ -22,7 +23,7 @@ public void Contrast(){
         color newColour = color(r, g, b);
         outputImage.set(x, y, newColour);
       }
-  }
+    }
 }
 
 
@@ -36,6 +37,18 @@ public void Negative() {
         float g = MaxIntensity - green(thisPix);
         float b = MaxIntensity - blue(thisPix);
         color newColour = color(r, g, b);
+        outputImage.set(x, y, newColour);      
+      }
+    } 
+}
+
+public void Greyscale() {
+    for (int y = 0; y < loadedImage.height; y++) {
+      for (int x = 0; x < loadedImage.width; x++) {
+  
+        color thisPix = loadedImage.get(x, y);
+        float r = red(thisPix);
+        color newColour = color(r, r, r);
         outputImage.set(x, y, newColour);      
       }
     } 
