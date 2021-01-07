@@ -1,6 +1,7 @@
 import g4p_controls.*;
    
 float brightnessVal;
+float contrastVal;
 void setup(){
   size(900, 800);
   
@@ -38,6 +39,14 @@ public void handleButtonEvents(GButton button, GEvent event) {
   }
 }
 
+// Droplist Events Listener
+public void handleDropListEvents(GDropList list, GEvent event) {
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Negative" && loadedImage != null){
+    println("Negative Filter!");
+    Negative();
+  }
+}
+
 // Slider Events Listener
 public void handleSliderEvents(GValueControl slider, GEvent event) {
   if (slider == brightness && event == GEvent.RELEASED && loadedImage != null){
@@ -47,6 +56,8 @@ public void handleSliderEvents(GValueControl slider, GEvent event) {
   }
   
   if (slider == contrast && event == GEvent.RELEASED && loadedImage != null){
-  println("Contrast value: " + slider.getValueI());
+    println("Contrast value: " + slider.getValueI());
+    contrastVal = map(slider.getValueF(), 0, 100, 1, 0);
+    Contrast();
   }
 }
