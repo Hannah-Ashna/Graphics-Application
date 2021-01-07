@@ -1,7 +1,6 @@
 import g4p_controls.*;
    
-PImage outputImage;
-
+float brightnessVal;
 void setup(){
   size(900, 800);
   
@@ -15,11 +14,11 @@ void setup(){
 void draw() {
   background(134, 136, 138);
   
-  if (loadedImage != null) {
-    outputImage = loadedImage.copy();
+  if (outputImage != null) {
     image(outputImage, 280, 80);
   }
   
+
 }
 
 
@@ -41,11 +40,13 @@ public void handleButtonEvents(GButton button, GEvent event) {
 
 // Slider Events Listener
 public void handleSliderEvents(GValueControl slider, GEvent event) {
-  if (slider == brightness && event == GEvent.RELEASED){
+  if (slider == brightness && event == GEvent.RELEASED && loadedImage != null){
     println("Brightness value: " + slider.getValueI());
+    brightnessVal = map(slider.getValueF(), 0, 100, 2, 0.1);
+    Brightness();
   }
   
-  if (slider == contrast && event == GEvent.RELEASED){
+  if (slider == contrast && event == GEvent.RELEASED && loadedImage != null){
   println("Contrast value: " + slider.getValueI());
   }
 }

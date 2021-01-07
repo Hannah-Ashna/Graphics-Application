@@ -2,6 +2,7 @@ import javax.swing.JFileChooser;
 import java.io.File;  
 
 PImage loadedImage;
+PImage outputImage;
 
 public void openFile(){
     JFileChooser fileChooser = new JFileChooser();
@@ -11,5 +12,6 @@ public void openFile(){
       String Path = selectedFile.getPath();
       Path = Path.replaceAll("\\\\", "/");;
       loadedImage = loadImage(Path);
+      outputImage = loadedImage.copy();
     }   
 }
