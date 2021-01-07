@@ -1,8 +1,9 @@
 import g4p_controls.*;
    
+PImage outputImage;
 
 void setup(){
-  size(800, 700);
+  size(900, 800);
   
   // Custom Cursor
   cursor(CROSS);
@@ -15,7 +16,8 @@ void draw() {
   background(134, 136, 138);
   
   if (loadedImage != null) {
-    image(loadedImage, 400, 400);
+    outputImage = loadedImage.copy();
+    image(outputImage, 280, 80);
   }
   
 }
@@ -25,15 +27,15 @@ void draw() {
 //    Event listeners
 // =====================
 
-// Dropdown Events Listener
-public void handleDropListEvents(GDropList list, GEvent event) {
-  if(list == fileOptions && event == GEvent.SELECTED && list.getSelectedText() == "Load File"){
-    println("Open File!");
+// Button Events Listener
+public void handleButtonEvents(GButton button, GEvent event) {
+  if(button == loadFile && event == GEvent.CLICKED){
+    println("Opening File!");
     openFile();
   }
   
-  if(list == fileOptions && event == GEvent.SELECTED && list.getSelectedText() == "Save File"){
-    println("Test2!");
+  if(button == saveFile && event == GEvent.CLICKED){
+    println("Saving File! - Pending");
   }
 }
 

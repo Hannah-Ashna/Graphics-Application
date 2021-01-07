@@ -1,15 +1,19 @@
 // Variables
 GCustomSlider brightness, contrast;
 GDropList fileOptions;
-GLabel lblBrightness, lblContrast ;
+GLabel lblBrightness, lblContrast;
+GButton loadFile, saveFile;
 
 public void GUI(){
   
-  // Load/Save Drop Down Options
-  String[] options = {"Load File", "Save File"};
-  fileOptions = new GDropList(this, 20, 20, 100, 60, 2);
-  fileOptions.setItems(options, 0);
   
+  loadFile = new GButton(this, 20, 15, 100, 18);
+  loadFile.setText("Load File");
+  loadFile.setTextBold();
+  
+  saveFile = new GButton(this, 125, 15, 100, 18);
+  saveFile.setText("Save File");
+  saveFile.setTextBold();
   // =========================
   
   // Brightness Slider
