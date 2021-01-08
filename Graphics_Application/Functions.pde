@@ -1,3 +1,7 @@
+// =====================
+//       Functions
+// =====================
+
 public void Brightness(){
     for (int y = 0; y < loadedImage.height; y++) {
       for (int x = 0; x < loadedImage.width; x++) {

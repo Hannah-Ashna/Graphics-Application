@@ -1,3 +1,7 @@
+// =====================
+//    GUI Settings
+// =====================
+
 // Variables
 GCustomSlider brightness, contrast;
 GDropList filterOptions;
@@ -10,13 +14,11 @@ public void GUI(){
   loadFile = new GButton(this, 20, 15, 100, 18);
   loadFile.setText("Load File");
   loadFile.setTextBold();
-  
   saveFile = new GButton(this, 125, 15, 100, 18);
   saveFile.setText("Save File");
   saveFile.setTextBold();
-  // =========================
   
-  // Filter Options
+  // Filters Dropdown Options
   lblFilter = new GLabel(this, 20, 20, 80, 340);
   lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   lblFilter.setText("Filters:");
