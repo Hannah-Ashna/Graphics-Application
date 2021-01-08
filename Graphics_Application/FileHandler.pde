@@ -1,5 +1,8 @@
 import javax.swing.JFileChooser;
 import java.io.File;  
+import java.io.FileWriter;
+import javax.imageio.ImageIO;
+import java.awt.image.*;
 
 PImage loadedImage;
 PImage outputImage;
@@ -14,4 +17,18 @@ public void openFile(){
       loadedImage = loadImage(Path);
       outputImage = loadedImage.copy();
     }   
+}
+
+
+
+public void closeFile(){
+  
+  JFileChooser fileChooser = new JFileChooser();
+  fileChooser.setDialogTitle("Specify a file to save");   
+   
+  int userSelection = fileChooser.showSaveDialog(null);
+   
+  if (userSelection == JFileChooser.APPROVE_OPTION) {
+    outputImage.save(fileChooser.getSelectedFile() + ".png");
+  }
 }
