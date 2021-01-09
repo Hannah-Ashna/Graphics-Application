@@ -1,8 +1,6 @@
 import javax.swing.JFileChooser;
 import java.io.File;  
 import java.io.FileWriter;
-import javax.imageio.ImageIO;
-import java.awt.image.*;
 
 PImage loadedImage;
 PImage outputImage;
@@ -18,7 +16,6 @@ public void openFile(){
       outputImage = loadedImage.copy();
     }   
 }
-
 
 
 public void closeFile(){
