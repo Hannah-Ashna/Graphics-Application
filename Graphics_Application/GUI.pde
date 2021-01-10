@@ -3,9 +3,9 @@
 // =====================
 
 // Variables
-GCustomSlider brightness, contrast;
+GCustomSlider brightness, contrast, blur;
 GDropList filterOptions;
-GLabel lblBrightness, lblContrast, lblFilter;
+GLabel lblBrightness, lblContrast, lblFilter, lblBlur;
 GButton loadFile, saveFile;
 
 public void GUI(){
@@ -23,7 +23,7 @@ public void GUI(){
   lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   lblFilter.setText("Filters:");
   lblFilter.setTextBold();
-  String[] options = {" - ", "Negative", "Greyscale"};
+  String[] options = {" - ", "Negative", "Greyscale", "Blur"};
   filterOptions = new GDropList(this, 20, 200, 80, 60, 2);
   filterOptions.setItems(options, 0);
   
@@ -46,4 +46,14 @@ public void GUI(){
   contrast.setShowDecor(false, true, true, true);
   contrast.setNbrTicks(5);
   contrast.setLimits(50, 0, 100);
+  
+  // Blur Slider
+  lblBlur = new GLabel(this, 20, 20, 80, 400);
+  lblBlur.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lblBlur.setText("Blur:");
+  lblBlur.setTextBold();
+  blur = new GCustomSlider(this, 20, 20, 200, 150, "grey_blue");
+  blur.setShowDecor(false, true, true, true);
+  blur.setNbrTicks(5);
+  blur.setLimits(50, 0, 100);
 }
