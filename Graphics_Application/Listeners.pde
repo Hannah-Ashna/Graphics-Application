@@ -4,6 +4,29 @@
 
 float brightnessVal;
 float contrastVal;
+float blurVal;
+
+// Convolusion Matrixes
+float[][] edge_matrix = { { 0,  -2,  0 },
+                          { -2,  8, -2 },
+                          { 0,  -2,  0 } }; 
+                     
+float[][] blur_matrix = {  {0.1,  0.1,  0.1 },
+                           {0.1,  0.1,  0.1 },
+                           {0.1,  0.1,  0.1 } };                      
+
+float[][] sharpen_matrix = {  { 0, -1, 0 },
+                              {-1, 5, -1 },
+                              { 0, -1, 0 } };  
+                         
+float[][] gaussianblur_matrix = { { 0.000,  0.000,  0.001, 0.001, 0.001, 0.000, 0.000},
+                                  { 0.000,  0.002,  0.012, 0.020, 0.012, 0.002, 0.000},
+                                  { 0.001,  0.012,  0.068, 0.109, 0.068, 0.012, 0.001},
+                                  { 0.001,  0.020,  0.109, 0.172, 0.109, 0.020, 0.001},
+                                  { 0.001,  0.012,  0.068, 0.109, 0.068, 0.012, 0.001},
+                                  { 0.000,  0.002,  0.012, 0.020, 0.012, 0.002, 0.000},
+                                  { 0.000,  0.000,  0.001, 0.001, 0.001, 0.000, 0.000}
+                                  };
 
 // Button Events Listener
 public void handleButtonEvents(GButton button, GEvent event) {
@@ -20,23 +43,29 @@ public void handleButtonEvents(GButton button, GEvent event) {
 
 // Droplist Events Listener
 public void handleDropListEvents(GDropList list, GEvent event) {
-    if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == " - " && loadedImage != null){
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == " - " && loadedImage != null){
     println("Revert to original");
     outputImage = loadedImage.copy();
   }
   
-    if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Greyscale" && loadedImage != null){
-    println("Greyscale Filter!");
-    Greyscale();
-  }
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Negative" && loadedImage != null){
     println("Negative Filter!");
     Negative();
   }
   
-    if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Greyscale" && loadedImage != null){
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Greyscale" && loadedImage != null){
     println("Greyscale Filter!");
     Greyscale();
+  }
+  
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Blur" && loadedImage != null){
+    println("Blur Filter!");
+    for (int y = 0; y < loadedImage.height; y++) {
+      for (int x = 0; x < loadedImage.width; x++) {
+        color convolution = Convolution(x, y, gaussianblur_matrix, 7, loadedImage);
+        outputImage.set(x, y, convolution);
+      }
+    }
   }
 }
 
@@ -51,6 +80,12 @@ public void handleSliderEvents(GValueControl slider, GEvent event) {
   if (slider == contrast && event == GEvent.RELEASED && loadedImage != null){
     println("Contrast value: " + slider.getValueI());
     contrastVal = map(slider.getValueF(), 0, 100, 1, 0);
+    Contrast();
+  }
+  
+  if (slider == blur && event == GEvent.RELEASED && loadedImage != null){
+    println("Blur value: " + slider.getValueI());
+    blurVal = map(slider.getValueF(), 0, 100, 1, 0);
     Contrast();
   }
 }
