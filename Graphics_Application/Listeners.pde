@@ -62,7 +62,27 @@ public void handleDropListEvents(GDropList list, GEvent event) {
     println("Blur Filter!");
     for (int y = 0; y < loadedImage.height; y++) {
       for (int x = 0; x < loadedImage.width; x++) {
-        color convolution = Convolution(x, y, gaussianblur_matrix, 7, loadedImage);
+        color convolution = Convolution(x, y, gaussianblur_matrix, gaussianblur_matrix.length, loadedImage);
+        outputImage.set(x, y, convolution);
+      }
+    }
+  }
+  
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Sharpen" && loadedImage != null){
+    println("Sharpen Filter!");
+    for (int y = 0; y < loadedImage.height; y++) {
+      for (int x = 0; x < loadedImage.width; x++) {
+        color convolution = Convolution(x, y, edge_matrix, edge_matrix.length, loadedImage);
+        outputImage.set(x, y, convolution);
+      }
+    }
+  }
+  
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Edge" && loadedImage != null){
+    println("Edge Filter!");
+    for (int y = 0; y < loadedImage.height; y++) {
+      for (int x = 0; x < loadedImage.width; x++) {
+        color convolution = Convolution(x, y, sharpen_matrix, sharpen_matrix.length, loadedImage);
         outputImage.set(x, y, convolution);
       }
     }
@@ -80,12 +100,6 @@ public void handleSliderEvents(GValueControl slider, GEvent event) {
   if (slider == contrast && event == GEvent.RELEASED && loadedImage != null){
     println("Contrast value: " + slider.getValueI());
     contrastVal = map(slider.getValueF(), 0, 100, 1, 0);
-    Contrast();
-  }
-  
-  if (slider == blur && event == GEvent.RELEASED && loadedImage != null){
-    println("Blur value: " + slider.getValueI());
-    blurVal = map(slider.getValueF(), 0, 100, 1, 0);
     Contrast();
   }
 }
