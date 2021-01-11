@@ -2,6 +2,7 @@
 //       Functions
 // =====================
 
+// Brighten - Slider
 public void Brightness(){
     for (int y = 0; y < loadedImage.height; y++) {
       for (int x = 0; x < loadedImage.width; x++) {
@@ -16,20 +17,58 @@ public void Brightness(){
     }
 }
 
+// Contrast - Slider (LUT)
 public void Contrast(){
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++) {
-        
-        color thisPix = loadedImage.get(x, y);
-        float r = (red(thisPix) * contrastVal) + brightnessVal;
-        float g = (green(thisPix) * contrastVal) + brightnessVal;
-        float b = (blue(thisPix) * contrastVal) + brightnessVal;
-        color newColour = color(r, g, b);
-        outputImage.set(x, y, newColour);
-      }
-    }
+  int[] lut = makeSigmoidLUT();
+  outputImage = applyPointProcessing(lut, lut, lut, loadedImage);
 }
 
+// Contrast - Sigmoid Curve
+public float sigmoidCurve(float v){  
+  float f =  (1.0 / (1 + exp(-12 * (v  - contrastVal))));
+  return f;
+}
+
+// Contrast - Create SigmoidLUT
+public int[] makeSigmoidLUT(){
+  int[] lut = new int[256];
+  for(int n = 0; n < 256; n++) {
+    
+    float p = n/255.0f;  // p ranges between 0...1
+    float val = sigmoidCurve(p);
+    lut[n] = (int)(val*255);
+  }
+  return lut;
+}
+
+// Apply Point Processing
+public PImage applyPointProcessing(int[] redLUT, int[] greenLUT, int[] blueLUT, PImage inputImage){
+  
+  PImage outputImage = createImage(inputImage.width,inputImage.height,RGB);
+ 
+  for (int y = 0; y < inputImage.height; y++) {
+    for (int x = 0; x < inputImage.width; x++) {
+    
+    color c = inputImage.get(x,y);
+    
+    int r = (int)red(c);
+    int g = (int)green(c);
+    int b = (int)blue(c);
+    
+    int lutR = redLUT[r];
+    int lutG = redLUT[g];
+    int lutB = redLUT[b];
+    
+    
+    outputImage.set(x,y, color(lutR,lutG,lutB));
+    
+    }
+  }
+  
+  return outputImage;
+}
+
+// ---------------- Other Filters (Dropdown Menu) --------------------------
 
 public void Negative() {
     int MaxIntensity = 255;
