@@ -30,6 +30,17 @@ public void handleButtonEvents(GButton button, GEvent event) {
     closeFile();
   }
   
+  if(button == saveImage && event == GEvent.CLICKED && loadedImage != null){
+    println("Saving updates to Image");
+    saveImage();
+  }
+  
+  if(button == reset && event == GEvent.CLICKED && originalImage != null){
+    println("Resetting Image");
+    loadedImage = originalImage.copy();
+    outputImage = originalImage.copy();
+  }
+  
   if(button == HSVButton && event == GEvent.CLICKED && loadedImage != null){
     println("Converting to HSV!");
     toHSV();
@@ -37,13 +48,13 @@ public void handleButtonEvents(GButton button, GEvent event) {
   
   if(button == RGBButton && event == GEvent.CLICKED && loadedImage != null){
     println("Converting to RGB!");
-    outputImage = loadedImage.copy();
+    outputImage = originalImage.copy();
   }
 }
 
 // Droplist Events Listener
 public void handleDropListEvents(GDropList list, GEvent event) {
-  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == " - " && loadedImage != null){
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "None" && loadedImage != null){
     println("Revert to original");
     outputImage = loadedImage.copy();
   }

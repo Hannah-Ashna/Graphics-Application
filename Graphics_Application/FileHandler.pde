@@ -4,6 +4,7 @@ import java.io.FileWriter;
 
 PImage loadedImage;
 PImage outputImage;
+PImage originalImage;
 
 public void openFile(){
     JFileChooser fileChooser = new JFileChooser();
@@ -19,6 +20,7 @@ public void openFile(){
       Path = Path.replaceAll("\\\\", "/");;
       loadedImage = loadImage(Path);
       outputImage = loadedImage.copy();
+      originalImage = loadedImage.copy();
     }   
 }
 
@@ -36,6 +38,8 @@ public void closeFile(){
   }
 }
 
+// Save any updates made to the image and set it as the loadedImage - base image
 public void saveImage(){
-  loadedImage = outputImage;
+  loadedImage = outputImage.copy();
+   
 }

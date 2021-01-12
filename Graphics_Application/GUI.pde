@@ -6,7 +6,7 @@
 GCustomSlider brightness, contrast;
 GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter;
-GButton loadFile, saveFile, HSVButton, RGBButton;
+GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton;
 
 public void GUI(){
   
@@ -17,6 +17,14 @@ public void GUI(){
   saveFile = new GButton(this, 125, 15, 100, 18);
   saveFile.setText("Save File");
   saveFile.setTextBold();
+  
+  // Load and Save file Buttons
+  saveImage = new GButton(this, 20, 38, 100, 18);
+  saveImage.setText("Save");
+  saveImage.setTextBold();
+  reset = new GButton(this, 125, 38, 100, 18);
+  reset.setText("Reset");
+  reset.setTextBold();
   
   // Brightness Slider
   lblBrightness = new GLabel(this, 20, 20, 80, 100);
@@ -53,7 +61,7 @@ public void GUI(){
   lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   lblFilter.setText("Filters:");
   lblFilter.setTextBold();
-  String[] options = {" - ", "Negative", "Greyscale", "Blur", "Sharpen", "Edge"};
+  String[] options = {"None", "Negative", "Greyscale", "Blur", "Sharpen", "Edge"};
   filterOptions = new GDropList(this, 22, 270, 80, 100, 6);
   filterOptions.setItems(options, 0);
 }
