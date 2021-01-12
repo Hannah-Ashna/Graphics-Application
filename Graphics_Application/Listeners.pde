@@ -35,7 +35,7 @@ public void handleButtonEvents(GButton button, GEvent event) {
 public void handleDropListEvents(GDropList list, GEvent event) {
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == " - " && loadedImage != null){
     println("Revert to original");
-    outputImage = loadedImage.copy();
+    HSVConversion();
   }
   
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Negative" && loadedImage != null){

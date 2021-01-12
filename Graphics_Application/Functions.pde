@@ -68,6 +68,47 @@ public PImage applyPointProcessing(int[] redLUT, int[] greenLUT, int[] blueLUT, 
   return outputImage;
 }
 
+// ---------------- RGB - HSV Slider --------------------------
+public void HSVConversion() {
+   float r = 128/255.0;
+   float g = 128/255.0;
+   float b = 0/255.0;
+        
+   // (H)ue, (S)aturation and (V)alue
+   float cMax = max(r, g, b);
+   float cMin = min(r, g, b);
+   float diff = cMax - cMin;
+   float h = -1, s = -1;
+        
+    if (cMax == cMin){
+     h = 0;
+    }
+        
+    else if (cMax == r){
+      h = (60 * ((g -b) / diff) + 360) % 360;
+    }
+        
+    else if (cMax == g){
+      h = (60 * ((b - r) / diff) + 360) % 360;
+    }
+        
+    else if (cMax == b){
+      h = (60 * ((r - g) / diff) + 360) % 360;
+    }
+        
+    if (cMax == 0){
+      s = 0;
+    }
+        
+    else {
+      s = (diff / cMax) * 100;
+    }
+        
+    float v = cMax * 100;
+    println(h, s, v);
+
+}
+
 // ---------------- Other Filters (Dropdown Menu) --------------------------
 
 public void Negative() {
