@@ -35,3 +35,7 @@ public void closeFile(){
     outputImage.save(fileChooser.getSelectedFile() + ".png");
   }
 }
+
+public void saveImage(){
+  loadedImage = outputImage;
+}

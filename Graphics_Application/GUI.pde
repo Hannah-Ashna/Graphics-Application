@@ -6,26 +6,17 @@
 GCustomSlider brightness, contrast;
 GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter;
-GButton loadFile, saveFile;
+GButton loadFile, saveFile, HSVButton, RGBButton;
 
 public void GUI(){
   
-  // Load and Save file buttons
+  // Load and Save file Buttons
   loadFile = new GButton(this, 20, 15, 100, 18);
   loadFile.setText("Load File");
   loadFile.setTextBold();
   saveFile = new GButton(this, 125, 15, 100, 18);
   saveFile.setText("Save File");
   saveFile.setTextBold();
-  
-  // Filters Dropdown Options
-  lblFilter = new GLabel(this, 20, 20, 80, 470);
-  lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  lblFilter.setText("Filters:");
-  lblFilter.setTextBold();
-  String[] options = {" - ", "Negative", "Greyscale", "Blur", "Sharpen", "Edge"};
-  filterOptions = new GDropList(this, 22, 270, 80, 100, 6);
-  filterOptions.setItems(options, 0);
   
   // Brightness Slider
   lblBrightness = new GLabel(this, 20, 20, 80, 100);
@@ -47,4 +38,22 @@ public void GUI(){
   contrast.setNbrTicks(5);
   contrast.setLimits(50, 0, 100);
   
+  // HSV Button
+  HSVButton = new GButton(this, 20, 200, 100, 18);
+  HSVButton.setText("HSV");
+  HSVButton.setTextBold();
+  
+  // HSV Button
+  RGBButton = new GButton(this,125, 200, 100, 18);
+  RGBButton.setText("RGB");
+  RGBButton.setTextBold();
+  
+  // Filters Dropdown Options
+  lblFilter = new GLabel(this, 20, 20, 80, 470);
+  lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lblFilter.setText("Filters:");
+  lblFilter.setTextBold();
+  String[] options = {" - ", "Negative", "Greyscale", "Blur", "Sharpen", "Edge"};
+  filterOptions = new GDropList(this, 22, 270, 80, 100, 6);
+  filterOptions.setItems(options, 0);
 }

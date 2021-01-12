@@ -29,13 +29,23 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("Saving File!");
     closeFile();
   }
+  
+  if(button == HSVButton && event == GEvent.CLICKED && loadedImage != null){
+    println("Converting to HSV!");
+    toHSV();
+  }
+  
+  if(button == RGBButton && event == GEvent.CLICKED && loadedImage != null){
+    println("Converting to RGB!");
+    outputImage = loadedImage.copy();
+  }
 }
 
 // Droplist Events Listener
 public void handleDropListEvents(GDropList list, GEvent event) {
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == " - " && loadedImage != null){
     println("Revert to original");
-    HSVConversion();
+    outputImage = loadedImage.copy();
   }
   
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Negative" && loadedImage != null){
