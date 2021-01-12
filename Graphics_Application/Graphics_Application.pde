@@ -12,9 +12,9 @@ void setup(){
 
 void draw() {
   background(134, 136, 138);
-  
+  square(280, 80, 600);
   if (outputImage != null) {
-    image(outputImage, 280, 80);
+    image(outputImage, 290, 90);
   }
   
 }
