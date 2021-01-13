@@ -4,7 +4,7 @@ void setup(){
   size(900, 800);
   
   // Custom Cursor
-  cursor(CROSS);
+  cursor(HAND);
   
   // Setup the GUI
   GUI();
