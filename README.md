@@ -1,6 +1,13 @@
 # Graphics Application (Module Project)
 As part of my **Applied Maths and Graphics** module, we were tasked with developing a small graphics application to reflect all of the techniques and formulas we have worked on over the past year. I definitely learnt that there is a surprisingly large amount of maths involved in simply changing the filter on an image.
 
+### Let's get it to work!
+It's a fairly simple process to get this application running so that you can fiddle about with it:
+* Ensure that you have [processing](https://processing.org/download/) installed so that you can run the files.
+* You'll then need to clone this repository or download it's contents.  
+`git clone https://github.com/Hannah-Ashna/Graphics-Application.git`
+* Navigate to **Graphics_Application.pde**, open it in processing and run
+
 ### What can it do?
 Details of what this little application is capable of doing are outlined in the [checklist](https://github.com/Hannah-Ashna/Graphics-Application/blob/main/AMG%20Graphics%20Checklist%20for%20Submission%202021.docx) I was provided with for this module. Within the checklist it also includes instructions on how to access each feature.
 
