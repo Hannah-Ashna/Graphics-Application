@@ -23,7 +23,28 @@ void draw() {
   }
   
   if (check == true){
-    rectangle();  
+    
+    switch(drawingMode){
+      
+      case 0:
+        //Do Nothing
+        break;
+      
+      case 1:
+        // Draw Rectangle
+        drawRect();
+        break;
+        
+      case 2:
+        // Draw Ellipses
+        drawEllipse();
+        break;
+      
+      case 3:
+        // Draw Line
+        line(pointA.x, pointA.y, pointB.x, pointB.y);
+        break;
+    }
   }
   
 }
@@ -42,11 +63,4 @@ void mouseReleased(){
     pointB.y = mouseY;
     check = true;
   }
-}
-
-void rectangle(){
-  float w = pointB.x - pointA.x;
-  float h = pointB.y - pointA.y;
-  
-  rect(pointA.x, pointA.y, w, h);
 }

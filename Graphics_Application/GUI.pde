@@ -6,7 +6,7 @@
 GCustomSlider brightness, contrast;
 GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter;
-GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton;
+GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton, rectButton, ellipseButton, lineButton;
 GWindow canvas;
 
 public void GUI(){
@@ -66,4 +66,14 @@ public void GUI(){
   filterOptions = new GDropList(this, 22, 270, 80, 100, 6);
   filterOptions.setItems(options, 0);
   
+  // Drawing Buttons
+  rectButton = new GButton(this, 20, 300, 85, 18);
+  rectButton.setText("Rectangle");
+  rectButton.setTextBold();
+  ellipseButton = new GButton(this, 20, 325, 85, 18);
+  ellipseButton.setText("Ellipse");
+  ellipseButton.setTextBold();
+  lineButton = new GButton(this, 20, 350, 85, 18);
+  lineButton.setText("Line");
+  lineButton.setTextBold();
 }

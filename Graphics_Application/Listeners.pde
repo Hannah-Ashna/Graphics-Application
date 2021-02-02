@@ -3,6 +3,7 @@
 // =====================
 
 float brightnessVal, contrastVal, blurVal;
+int drawingMode = 0; // 0 - Nothing, 1 - Rectangles, 2 - Ellipses, 3 - Lines
 
 // Convolusion Matrixes
 float[][] sharpen_matrix = { { 0,  -2,  0 },
@@ -49,6 +50,21 @@ public void handleButtonEvents(GButton button, GEvent event) {
   if(button == RGBButton && event == GEvent.CLICKED && loadedImage != null){
     println("Converting to RGB!");
     outputImage = originalImage.copy();
+  }
+  
+  if(button == rectButton && event == GEvent.CLICKED){
+    println("Drawing Rectangles Mode!");
+    drawingMode = 1;
+  }
+  
+  if(button == ellipseButton && event == GEvent.CLICKED){
+    println("Drawing Ellipses Mode!");
+    drawingMode = 2;
+  }
+  
+  if(button == lineButton && event == GEvent.CLICKED){
+    println("Drawing Lines Mode!");
+    drawingMode = 3;
   }
 }
 

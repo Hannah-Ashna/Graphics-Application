@@ -231,3 +231,19 @@ public color Convolution(int Xcen, int Ycen, float[][] matrix, int matrixsize, P
   
   return color(rTotal, gTotal, bTotal);
 }
+
+// ---------------- Drawing Functions --------------------------
+
+void drawRect(){
+  float w = pointB.x - pointA.x;
+  float h = pointB.y - pointA.y;
+  
+  rect(pointA.x, pointA.y, w, h);
+}
+
+void drawEllipse(){
+  float w = pointB.x - pointA.x;
+  float h = pointB.y - pointA.y;
+  
+  ellipse(pointA.x + w/2, pointA.y + h/2, w, h);
+}
