@@ -7,9 +7,10 @@ GCustomSlider brightness, contrast;
 GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter;
 GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton;
+GWindow canvas;
 
 public void GUI(){
-  
+
   // Load and Save file Buttons
   loadFile = new GButton(this, 20, 15, 100, 18);
   loadFile.setText("Load File");
@@ -64,4 +65,5 @@ public void GUI(){
   String[] options = {"None", "Negative", "Greyscale", "Blur", "Sharpen", "Edge"};
   filterOptions = new GDropList(this, 22, 270, 80, 100, 6);
   filterOptions.setItems(options, 0);
+  
 }
