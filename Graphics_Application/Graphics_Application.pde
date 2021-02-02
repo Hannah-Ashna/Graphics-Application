@@ -1,10 +1,10 @@
 import g4p_controls.*;
+import java.awt.event.*;
 
-PVector pointA = new PVector(280,80);
-PVector pointB = new PVector(280,80);
-
-boolean check = false;
-
+DrawingList drawingList;
+String toolMode = "";
+String mouseEventType = "mousePressed";
+PVector point;
 void setup(){
   size(900, 800);
   
@@ -13,54 +13,43 @@ void setup(){
   
   // Setup the GUI
   GUI();
+  
+  // Setup Drawing List
+  drawingList = new DrawingList();
 }
 
 void draw() {
   background(134, 136, 138);
-  square(280, 80, 600);
+  //square(280, 80, 600);
   if (outputImage != null) {
     image(outputImage, 290, 90);
   }
+  handleEvent();
+  drawingList.drawShapes();
+}
+
+
+void handleEvent() {
   
-  if (check == true){
-    
-    switch(drawingMode){
-      
-      case 0:
-        //Do Nothing
-        break;
-      
-      case 1:
-        // Draw Rectangle
-        drawRect();
-        break;
-        
-      case 2:
-        // Draw Ellipses
-        drawEllipse();
-        break;
-      
-      case 3:
-        // Draw Line
-        line(pointA.x, pointA.y, pointB.x, pointB.y);
-        break;
-    }
+  
+  if ((toolMode.equals("rect") || toolMode.equals("ellipse") || toolMode.equals("line")) && (mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
+    drawingList.mouseDrawEvent(toolMode, mouseEventType, point);
+    return;
   }
-  
 }
 
 void mousePressed(){
-  if((mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
-    pointA.x = mouseX;
-    pointA.y = mouseY;
-    check = false;
-  }
+  mouseEventType = "mousePressed";
+  point(mouseX, mouseY);
+}
+
+void mouseDragged(){
+  mouseEventType = "mouseDragged";
+  point(mouseX, mouseY);
+  
 }
 
 void mouseReleased(){
-  if((mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
-    pointB.x = mouseX;
-    pointB.y = mouseY;
-    check = true;
-  }
+  mouseEventType = "mouseReleased";
+  point(mouseX, mouseY);
 }
