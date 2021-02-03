@@ -59,6 +59,11 @@ class Shape {
     if ( drawingMode == "line") {
       line(x1, y1, x2, y2);
     }
+    
+    if ( drawingMode == "initial") {
+      fill(255, 255, 255);
+      square(280, 80, 600);
+    }
   }
   
   void setSelectedDrawingStyle() {

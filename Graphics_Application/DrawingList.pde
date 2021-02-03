@@ -12,6 +12,7 @@ class DrawingList {
   }
   
   public void mouseDrawEvent (String shapeType, int event, PVector mouseLoc){
+    
     if (event == 1) {
       println("Mouse Pressed");
       Shape newShape = new Shape(shapeType);
@@ -29,6 +30,18 @@ class DrawingList {
       println("Mouse Released");
       currentlyDrawnShape.endDrawing(mouseLoc);
     }
+  }
+  
+  public void initCanvas() {
+      println("Initialising Canvas");
+      PVector canvasLoc = new PVector(280, 80);
+      Shape newShape = new Shape("initial");
+      newShape.startDrawing(canvasLoc);
+      shapesList.add(newShape);
+      currentlyDrawnShape = newShape;
+      canvasLoc.set(880, 680);
+      
+      currentlyDrawnShape.endDrawing(canvasLoc);
   }
  
 }

@@ -76,4 +76,5 @@ public void GUI(){
   lineButton = new GButton(this, 20, 350, 85, 18);
   lineButton.setText("Line");
   lineButton.setTextBold();
+  
 }
