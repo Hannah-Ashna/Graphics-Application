@@ -1,10 +1,10 @@
 import g4p_controls.*;
-import java.awt.event.*;
+import processing.event.MouseEvent;
 
 DrawingList drawingList;
 String toolMode = "";
 String mouseEventType = "mousePressed";
-PVector point;
+
 void setup(){
   size(900, 800);
   
@@ -29,27 +29,12 @@ void draw() {
 }
 
 
-void handleEvent() {
-  
+void handleEvent(){
   
   if ((toolMode.equals("rect") || toolMode.equals("ellipse") || toolMode.equals("line")) && (mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
+    int mouseEventType = mouseEvent.getAction();
+    PVector point = new PVector(mouseX, mouseY);
     drawingList.mouseDrawEvent(toolMode, mouseEventType, point);
     return;
   }
-}
-
-void mousePressed(){
-  mouseEventType = "mousePressed";
-  point(mouseX, mouseY);
-}
-
-void mouseDragged(){
-  mouseEventType = "mouseDragged";
-  point(mouseX, mouseY);
-  
-}
-
-void mouseReleased(){
-  mouseEventType = "mouseReleased";
-  point(mouseX, mouseY);
 }

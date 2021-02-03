@@ -11,20 +11,22 @@ class DrawingList {
     }
   }
   
-  public void mouseDrawEvent (String shapeType, String event, PVector mouseLoc){
-    if (event.equals("mousePressed")) {
-      println("eeeee");
+  public void mouseDrawEvent (String shapeType, int event, PVector mouseLoc){
+    if (event == 1) {
+      println("Mouse Pressed");
       Shape newShape = new Shape(shapeType);
       newShape.startDrawing(mouseLoc);
       shapesList.add(newShape);
       currentlyDrawnShape = newShape;
     }
 
-    if (event.equals("mouseDragged")) {
+    if (event == 4) {
+      println("Mouse Dragged");
       currentlyDrawnShape.duringDrawing(mouseLoc);
     }
 
-    if (event.equals("mousePressed")) {
+    if (event == 2) {
+      println("Mouse Released");
       currentlyDrawnShape.endDrawing(mouseLoc);
     }
   }
