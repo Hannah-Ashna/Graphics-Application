@@ -42,16 +42,13 @@ void handleEvent(){
 
 // For Selecting an Object
 void mousePressed(){
-    if (toolMode.equals("select")){
+  if (toolMode.equals("select")){
     int mouseEventType = mouseEvent.getAction();
     PVector point = new PVector(mouseX, mouseY);
     drawingList.selectObject(mouseEventType, point);
   }
-}
-
-// For Deleting an Object
-void keyPressed(){
-  if(key == BACKSPACE){
+  
+  if(toolMode.equals("delete")){
     drawingList.deleteObject();
   }
 }
