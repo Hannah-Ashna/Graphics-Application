@@ -34,6 +34,18 @@ class Shape {
      this.isBeingDrawn = false;
   }
   
+  // Select a drawn shape object
+  public boolean toggleSelect(PVector point) {
+    
+    UIRect selectionRegion = new UIRect(pointA, pointB);
+    if (selectionRegion.isPointInside(point)) {
+      this.isSelected = !this.isSelected;
+      return true;
+    }
+    println("Selection fail!");
+    return false;
+  }
+  
   public void drawShapes() {
     float x1 = this.pointA.x;
     float y1 = this.pointA.y;

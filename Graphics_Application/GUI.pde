@@ -6,7 +6,7 @@
 GCustomSlider brightness, contrast;
 GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter;
-GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton, rectButton, ellipseButton, lineButton;
+GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton, rectButton, ellipseButton, lineButton, selectButton;
 GWindow canvas;
 
 public void GUI(){
@@ -76,5 +76,63 @@ public void GUI(){
   lineButton = new GButton(this, 20, 350, 85, 18);
   lineButton.setText("Line");
   lineButton.setTextBold();
+  selectButton = new GButton(this, 20, 375, 85, 18);
+  selectButton.setText("Select");
+  selectButton.setTextBold();
   
+}
+
+// For Selection within the Canvas
+class UIRect{
+  
+  float left,top,right,bottom;
+  public UIRect(){
+    
+  }
+
+  public UIRect(PVector upperleft, PVector lowerright){
+    setRect(upperleft.x,upperleft.y,lowerright.x,lowerright.y);
+  }
+  
+  void setRect(UIRect other){
+    setRect(other.left, other.top, other.right, other.bottom);
+  }
+  
+  
+  void setRect(float x1, float y1, float x2, float y2){
+    this.left = min(x1,x2);
+    this.top = min(y1,y2);
+    this.right = max(x1,x2);
+    this.bottom = max(y1,y2);
+  }
+  
+  
+  boolean equals(UIRect other){
+    if(left == other.left && top == other.top && 
+       right == other.right && bottom == other.bottom) return true;
+    return false;
+  }
+  
+  PVector getCentre(){
+    float cx = this.left + (this.right - this.left)/2.0;
+    float cy = this.top + (this.bottom - this.top)/2.0;
+    return new PVector(cx,cy);
+  }
+  
+  boolean isPointInside(PVector p){
+    // inclusive of the boundries
+    if(   this.isBetweenInc(p.x, this.left, this.right) && this.isBetweenInc(p.y, this.top, this.bottom) ) return true;
+    return false;
+  }
+  
+  boolean isPointInside(float x, float y){
+    PVector v = new PVector(x,y);
+    return isPointInside(v);
+  }
+  
+  boolean isBetweenInc(float v, float lo, float hi){
+  if(v >= lo && v <= hi) return true;
+  return false;
+ }
+
 }

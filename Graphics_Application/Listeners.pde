@@ -66,6 +66,11 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("Drawing Lines Mode!");
     toolMode = "line";
   }
+  
+  if(button == selectButton && event == GEvent.CLICKED){
+    println("Selecting Drawn Object!");
+    toolMode = "select";
+  }
 }
 
 // Droplist Events Listener
