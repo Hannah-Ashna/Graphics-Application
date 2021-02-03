@@ -3,11 +3,14 @@
 // =====================
 
 // Variables
-GCustomSlider brightness, contrast;
+GCustomSlider brightness, contrast, thickness;
 GDropList filterOptions;
-GLabel lblBrightness, lblContrast, lblFilter;
-GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton, rectButton, ellipseButton, lineButton, selectButton;
-GWindow canvas;
+GLabel lblBrightness, lblContrast, lblFilter, lblShape, lblStroke, lblThickness, lblFill;
+GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton, rectButton, ellipseButton, lineButton, selectButton, deleteButton;
+GKnob RStroke, GStroke, BStroke, RFill, GFill, BFill;
+
+int kx, ky, r, g, b;
+int kx2, ky2, r2, g2, b2;
 
 public void GUI(){
 
@@ -67,19 +70,105 @@ public void GUI(){
   filterOptions.setItems(options, 0);
   
   // Drawing Buttons
-  rectButton = new GButton(this, 20, 300, 85, 18);
+  lblShape = new GLabel(this, 20, 20, 80, 570);
+  lblShape.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lblShape.setText("Shapes:");
+  lblShape.setTextBold();
+  rectButton = new GButton(this, 20, 320, 85, 18);
   rectButton.setText("Rectangle");
   rectButton.setTextBold();
-  ellipseButton = new GButton(this, 20, 325, 85, 18);
+  ellipseButton = new GButton(this, 20, 345, 85, 18);
   ellipseButton.setText("Ellipse");
   ellipseButton.setTextBold();
-  lineButton = new GButton(this, 20, 350, 85, 18);
+  lineButton = new GButton(this, 20, 370, 85, 18);
   lineButton.setText("Line");
   lineButton.setTextBold();
-  selectButton = new GButton(this, 20, 375, 85, 18);
+  selectButton = new GButton(this, 20, 395, 85, 18);
   selectButton.setText("Select");
   selectButton.setTextBold();
+  deleteButton = new GButton(this, 20, 420, 85, 18);
+  deleteButton.setText("Delete");
+  deleteButton.setTextBold();
   
+  // Stroke RGB Knobs
+  kx = 10;
+  ky = 470;
+  r = g = b = 0;
+
+  lblStroke = new GLabel(this, 45, 20, 80, 880);
+  lblStroke.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lblStroke.setText("Stroke:");
+  lblStroke.setTextBold();
+  
+  RStroke = new GKnob(this, kx, ky, 120, 120, 0.8);
+  RStroke.setTurnRange(150, 270);
+  RStroke.setTurnMode(G4P.CTRL_ANGULAR);
+  RStroke.setArcPolicy(true, true, true);
+  RStroke.setLimits(r, 0, 255);
+  RStroke.setNbrTicks(9);
+  RStroke.setLocalColorScheme(G4P.RED_SCHEME);
+
+  GStroke = new GKnob(this, kx, ky, 120, 120, 0.8);
+  GStroke.setTurnRange(270, 30);
+  GStroke.setTurnMode(G4P.CTRL_ANGULAR);
+  GStroke.setArcPolicy(true, true, true);
+  GStroke.setLimits(g, 0, 255);
+  GStroke.setNbrTicks(9);
+  GStroke.setLocalColorScheme(G4P.GREEN_SCHEME);
+
+  BStroke = new GKnob(this, kx, ky, 120, 120, 0.8);
+  BStroke.setTurnRange(30, 150);
+  BStroke.setTurnMode(G4P.CTRL_ANGULAR);
+  BStroke.setArcPolicy(true, true, true);
+  BStroke.setLimits(b, 0, 255);
+  BStroke.setNbrTicks(9);
+  BStroke.setLocalColorScheme(G4P.BLUE_SCHEME);   //<>//
+
+  // Stroke Thickness Slider
+  lblThickness = new GLabel(this, 20, 20, 200, 1200);
+  lblThickness .setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lblThickness .setText("Stroke Thickness:");
+  lblThickness .setTextBold();
+  thickness = new GCustomSlider(this, 20, 20, 200, 1280, "grey_blue");
+  thickness.setShowDecor(false, true, true, true);
+  thickness.setNbrTicks(5);
+  thickness.setLimits(5, 1, 10);
+  
+  // Fill RGB Knobs
+  kx2 = 140;
+  ky2 = 470;
+  r2 = g2 = b2 = 140;
+  
+  lblFill = new GLabel(this, 185, 20, 80, 880);
+  lblFill.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lblFill.setText("Fill:");
+  lblFill.setTextBold();
+  
+  RFill = new GKnob(this, kx2, ky2, 120, 120, 0.8);
+  RFill.setTurnRange(150, 270);
+  RFill.setTurnMode(G4P.CTRL_ANGULAR);
+  RFill.setArcPolicy(true, true, true);
+  RFill.setLimits(r, 0, 255);
+  RFill.setNbrTicks(9);
+  RFill.setLocalColorScheme(G4P.RED_SCHEME);
+
+  GFill = new GKnob(this, kx2, ky2, 120, 120, 0.8);
+  GFill.setTurnRange(270, 30);
+  GFill.setTurnMode(G4P.CTRL_ANGULAR);
+  GFill.setArcPolicy(true, true, true);
+  GFill.setLimits(g, 0, 255);
+  GFill.setNbrTicks(9);
+  GFill.setLocalColorScheme(G4P.GREEN_SCHEME);
+
+  BFill = new GKnob(this, kx2, ky2, 120, 120, 0.8);
+  BFill.setTurnRange(30, 150);
+  BFill.setTurnMode(G4P.CTRL_ANGULAR);
+  BFill.setArcPolicy(true, true, true);
+  BFill.setLimits(b, 0, 255);
+  BFill.setNbrTicks(9);
+  BFill.setLocalColorScheme(G4P.BLUE_SCHEME);  
+  
+ //<>//
 }
 
 // For Selection within the Canvas
@@ -94,11 +183,6 @@ class UIRect{
     setRect(upperleft.x,upperleft.y,lowerright.x,lowerright.y);
   }
   
-  void setRect(UIRect other){
-    setRect(other.left, other.top, other.right, other.bottom);
-  }
-  
-  
   void setRect(float x1, float y1, float x2, float y2){
     this.left = min(x1,x2);
     this.top = min(y1,y2);
@@ -111,12 +195,6 @@ class UIRect{
     if(left == other.left && top == other.top && 
        right == other.right && bottom == other.bottom) return true;
     return false;
-  }
-  
-  PVector getCentre(){
-    float cx = this.left + (this.right - this.left)/2.0;
-    float cy = this.top + (this.bottom - this.top)/2.0;
-    return new PVector(cx,cy);
   }
   
   boolean isPointInside(PVector p){

@@ -36,13 +36,12 @@ class Shape {
   
   // Select a drawn shape object
   public boolean toggleSelect(PVector point) {
-    
     UIRect selectionRegion = new UIRect(pointA, pointB);
+    
     if (selectionRegion.isPointInside(point)) {
       this.isSelected = !this.isSelected;
       return true;
     }
-    println("Selection fail!");
     return false;
   }
   
@@ -73,6 +72,8 @@ class Shape {
     }
     
     if ( drawingMode == "initial") {
+      strokeWeight(2);
+      stroke(0, 0, 0);
       fill(255, 255, 255);
       square(280, 80, 600);
     }
@@ -85,9 +86,9 @@ class Shape {
   }
 
   void setDefaultDrawingStyle() {
-    strokeWeight(1);
-    stroke(0, 0, 0);
-    fill(127, 127, 127);
+    strokeWeight(thicknessVal);
+    stroke(r, g, b);
+    fill(r2, g2, b2);
   }
   
 }

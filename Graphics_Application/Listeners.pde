@@ -3,6 +3,7 @@
 // =====================
 
 float brightnessVal, contrastVal, blurVal;
+int thicknessVal = 1;
 
 
 // Convolusion Matrixes
@@ -71,6 +72,11 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("Selecting Drawn Object!");
     toolMode = "select";
   }
+  
+  if(button == deleteButton && event == GEvent.CLICKED){
+    println("Deleting Drawn Object!");
+    toolMode = "delete";
+  }
 }
 
 // Droplist Events Listener
@@ -134,4 +140,36 @@ public void handleSliderEvents(GValueControl slider, GEvent event) {
     contrastVal = map(slider.getValueF(), 0, 100, 1, 0);
     Contrast();
   }
+  
+  if (slider == thickness && event == GEvent.RELEASED){
+    println("Stroke Weight value: " + slider.getValueI());
+    thicknessVal = slider.getValueI();
+  }
+}
+
+// RGB Knobs Events Listener
+void handleKnobEvents(GValueControl knob, GEvent event) {
+  
+  // Stroke
+  if((knob == RStroke || knob == GStroke || knob == BStroke)){
+     if (knob == RStroke) 
+       r = knob.getValueI();
+     else if (knob == GStroke)
+       g = knob.getValueI();
+     else if (knob == BStroke)
+       b = knob.getValueI();
+  }  
+  
+  // Fill
+  if((knob == RFill || knob == GFill || knob == BFill)){
+     if (knob == RFill) 
+       r2 = knob.getValueI();
+     else if (knob == GFill)
+       g2 = knob.getValueI();
+     else if (knob == BFill)
+       b2 = knob.getValueI();
+  }
+  
+
+
 }
