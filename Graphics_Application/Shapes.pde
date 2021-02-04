@@ -6,6 +6,7 @@ class Shape {
   
   boolean isSelected = false;
   boolean isBeingDrawn = false;
+  boolean curveReady = false;
   
   // Initialise drawn object
   public Shape (String drawingMode){
@@ -45,6 +46,7 @@ class Shape {
     return false;
   }
   
+  
   // Draw the shape object
   public void drawShapes() {
     float x1 = this.pointA.x;
@@ -54,22 +56,37 @@ class Shape {
     float w = x2-x1;
     float h = y2-y1;
     
+    ArrayList<PVector> points = new ArrayList<PVector>();
+    //Add points for the curve
+    points.add(new PVector(x1, y1));
+    points.add(new PVector(x2 + 80, y1 - 75));
+    points.add(new PVector(x2 + 30, y2 +75));
+    points.add(new PVector(x2, y2));
+    
+    
     if (this.isSelected) {
       setSelectedDrawingStyle();
     } else{
       setDefaultDrawingStyle(); 
     }
     
-    if ( drawingMode == "rect") {
+    if (drawingMode == "rect") {
       rect(x1, y1, w, h);
     }
     
-    if ( drawingMode == "ellipse") {
+    if (drawingMode == "ellipse") {
       ellipse(x1+ w/2, y1 + h/2, w, h);
     }
     
-    if ( drawingMode == "line") {
+    if (drawingMode == "line") {
       line(x1, y1, x2, y2);
+    }
+    
+    if (drawingMode == "curve") {
+      romcatmullCurve(points);
+      if (this.curveReady == true){
+        endShape();
+      }
     }
     
     // Not used due to Canvas issue -- See DrawingList initCanvas() method
@@ -94,6 +111,10 @@ class Shape {
     strokeWeight(thicknessVal);
     stroke(r, g, b);
     fill(r2, g2, b2);
+  }
+  
+  public void drawCurve(){
+    this.curveReady = true;
   }
   
 }

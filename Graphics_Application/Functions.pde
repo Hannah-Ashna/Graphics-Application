@@ -231,3 +231,23 @@ public color Convolution(int Xcen, int Ycen, float[][] matrix, int matrixsize, P
   
   return color(rTotal, gTotal, bTotal);
 }
+
+// ---------------- Curve Function --------------------------
+void romcatmullCurve(ArrayList<PVector> points){
+   noFill();
+   beginShape();
+   PVector startPoint = points.get(0);
+   ellipse(startPoint.x, startPoint.y, 5, 5);
+   curveVertex(startPoint.x, startPoint.y);
+   
+   for (PVector p: points) {
+      ; 
+      curveVertex(p.x, p.y);
+    }
+    
+   PVector endPoint = points.get(points.size()-1);
+   ellipse(endPoint.x, endPoint.y, 5, 5);
+   curveVertex(endPoint.x, endPoint.y);    
+   //endShape();
+
+}

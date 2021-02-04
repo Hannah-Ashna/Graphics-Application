@@ -29,11 +29,12 @@ class DrawingList {
     
     if (eventType == 1) {
       println("Mouse Pressed");
+      //beginShape();
       Shape newShape = new Shape(shapeType);
       newShape.startDrawing(mouseLoc);
       shapesList.add(newShape);
       currentlyDrawnShape = newShape;
-
+      
     }
     
     if (eventType == 4) {
@@ -43,7 +44,10 @@ class DrawingList {
 
     if (eventType == 2) {
       println("Mouse Released");
-      currentlyDrawnShape.endDrawing(mouseLoc);
+      if (shapeType == "curve"){
+         currentlyDrawnShape.drawCurve();
+      }
+      currentlyDrawnShape.endDrawing(mouseLoc);      
     }
   }
   
@@ -73,5 +77,4 @@ class DrawingList {
     shapesList = tempShapeList;
   }
 
- 
 }
