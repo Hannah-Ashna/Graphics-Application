@@ -10,7 +10,9 @@ class DrawingList {
       s.drawShapes();
     }
   }
-
+  
+  // Function no longer used
+  // Being part of the drawing list meant that it would cover any image that was loaded (Can be used if image editing is not used)
   public void initCanvas() {
       println("Initialising Canvas");
       PVector canvasLoc = new PVector(280, 80);
@@ -19,10 +21,10 @@ class DrawingList {
       shapesList.add(newShape);
       currentlyDrawnShape = newShape;
       canvasLoc.set(880, 680);
-      
       currentlyDrawnShape.endDrawing(canvasLoc);
   }  
   
+  // Capture mouse events to decide what shape to draw
   public void mouseDrawEvent (String shapeType, int eventType, PVector mouseLoc){
     
     if (eventType == 1) {
@@ -31,8 +33,9 @@ class DrawingList {
       newShape.startDrawing(mouseLoc);
       shapesList.add(newShape);
       currentlyDrawnShape = newShape;
-    }
 
+    }
+    
     if (eventType == 4) {
       println("Mouse Dragged");
       currentlyDrawnShape.duringDrawing(mouseLoc);
@@ -44,17 +47,17 @@ class DrawingList {
     }
   }
   
+  // Select an existing shape object
   public void selectObject(int eventType, PVector mouseLoc) {
     if (eventType == 1) {
       for (Shape s : shapesList) {
-        println("Selection in progress!");
-        println(mouseLoc);
         boolean selectionMade = s.toggleSelect(mouseLoc);
         if (selectionMade) break;
       }
     }
   } 
   
+  // Delete an existing shape object
   public void deleteObject() {
     ArrayList<Shape> tempShapeList = new ArrayList<Shape>();
     for (Shape s : shapesList) {
