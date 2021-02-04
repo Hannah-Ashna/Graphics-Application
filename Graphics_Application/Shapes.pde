@@ -59,7 +59,7 @@ class Shape {
     ArrayList<PVector> points = new ArrayList<PVector>();
     //Add points for the curve
     points.add(new PVector(x1, y1));
-    points.add(new PVector(x2 + 80, y1 - 75));
+    //points.add(new PVector(x2 + 80, y1 - 75));
     points.add(new PVector(x2 + 30, y2 +75));
     points.add(new PVector(x2, y2));
     
@@ -113,6 +113,8 @@ class Shape {
     fill(r2, g2, b2);
   }
   
+  // Using begin and end shape created a duplication issue
+  // This boolean ensures that the shape is only ended once we're done with the curve
   public void drawCurve(){
     this.curveReady = true;
   }

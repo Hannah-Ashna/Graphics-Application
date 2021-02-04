@@ -39,11 +39,18 @@ class DrawingList {
     
     if (eventType == 4) {
       println("Mouse Dragged");
+      
+      // Draw the curve to allow user to see the curve being moved
+      if (shapeType == "curve"){
+         currentlyDrawnShape.drawCurve();
+      } 
       currentlyDrawnShape.duringDrawing(mouseLoc);
     }
 
     if (eventType == 2) {
       println("Mouse Released");
+      
+      // Draw the final curve
       if (shapeType == "curve"){
          currentlyDrawnShape.drawCurve();
       }

@@ -241,7 +241,6 @@ void romcatmullCurve(ArrayList<PVector> points){
    curveVertex(startPoint.x, startPoint.y);
    
    for (PVector p: points) {
-      ; 
       curveVertex(p.x, p.y);
     }
     
