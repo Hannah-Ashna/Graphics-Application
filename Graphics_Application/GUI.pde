@@ -6,7 +6,9 @@
 GCustomSlider brightness, contrast, thickness;
 GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter, lblShape, lblStroke, lblThickness, lblFill;
-GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton, rectButton, ellipseButton, lineButton, selectButton, deleteButton;
+GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton;
+GButton rectButton, ellipseButton, lineButton, selectButton, deleteButton;
+GButton curveButton, resetButton;
 GKnob RStroke, GStroke, BStroke, RFill, GFill, BFill;
 
 int kx, ky, r, g, b;
@@ -89,6 +91,13 @@ public void GUI(){
   deleteButton = new GButton(this, 20, 420, 85, 18);
   deleteButton.setText("Delete");
   deleteButton.setTextBold();
+  
+  curveButton = new GButton(this, 125, 320, 85, 18);
+  curveButton.setText("Curve");
+  curveButton.setTextBold();
+  resetButton = new GButton(this, 125, 345, 85, 18);
+  resetButton.setText("Reset");
+  resetButton.setTextBold();
   
   // Stroke RGB Knobs
   kx = 10;

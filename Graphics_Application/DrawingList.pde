@@ -66,6 +66,12 @@ class DrawingList {
     
     shapesList = tempShapeList;
   }
+  
+  // Reset canvas
+  public void reset(){
+    ArrayList<Shape> tempShapeList = new ArrayList<Shape>();
+    shapesList = tempShapeList;
+  }
 
  
 }

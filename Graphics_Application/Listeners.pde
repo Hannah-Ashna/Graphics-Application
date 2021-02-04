@@ -77,6 +77,16 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("Deleting Drawn Object!");
     toolMode = "delete";
   }
+  
+  if(button == curveButton && event == GEvent.CLICKED){
+    println("Drawing a Curve!");
+    toolMode = "curve";
+  }
+  
+  if(button == resetButton && event == GEvent.CLICKED){
+    println("Resetting Canvas!");
+    toolMode = "reset";
+  }
 }
 
 // Droplist Events Listener
