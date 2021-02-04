@@ -95,6 +95,9 @@ public void GUI(){
   curveButton = new GButton(this, 125, 320, 85, 18);
   curveButton.setText("Curve");
   curveButton.setTextBold();
+  moveButton = new GButton(this, 125, 370, 85, 18);
+  moveButton.setText("Move");
+  moveButton.setTextBold();
   resetButton = new GButton(this, 125, 395, 85, 18);
   resetButton.setText("Reset");
   resetButton.setTextBold();

@@ -1,3 +1,10 @@
+// ===================================
+//       Main File - Graphics App
+// ------------------------------------
+// By: Hannah Ashna Jacob (2020 - 2021)
+// For: NTU Maths & Graphics Module
+// ====================================
+
 import g4p_controls.*;
 import processing.event.MouseEvent;
 
@@ -39,7 +46,7 @@ void draw() {
   drawingList.drawShapes();
 }
 
-// ---------- Other Functions ----------------
+// ---------- Other Functions (Drawing) ----------------
 
 // Monitors button and mouse events for Drawing
 void handleEvent(){
@@ -50,14 +57,24 @@ void handleEvent(){
     return;
   }
   
+  // Reset the drawing list/canvas
   if(toolMode.equals("reset")){
     drawingList.reset();
   }
   
+  // Delete a shape object
   if(toolMode.equals("delete")){
     drawingList.deleteObject();
   }
   
+  // Move a shape object
+  if(toolMode.equals("move") && (mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
+    PVector point = new PVector(mouseX, mouseY);
+    int mouseEventType = mouseEvent.getAction();
+    drawingList.moveObject(point, mouseEventType);
+  }
+  
+  // Resize a shape object
   if(toolMode.equals("resize") && (mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
     PVector point = new PVector(mouseX, mouseY);
     int mouseEventType = mouseEvent.getAction();

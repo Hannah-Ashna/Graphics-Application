@@ -1,3 +1,7 @@
+// =======================
+//    Drawing List Class
+// =======================
+
 class DrawingList {
   ArrayList<Shape> shapesList = new ArrayList<Shape>();
   
@@ -11,7 +15,7 @@ class DrawingList {
     }
   }
   
-  // Function no longer used
+  // No longer used
   // Being part of the drawing list meant that it would cover any image that was loaded (Can be used if image editing is not used)
   public void initCanvas() {
       println("Initialising Canvas");
@@ -81,7 +85,18 @@ class DrawingList {
   public void resizeObject(PVector mouseLoc, int eventType){
     for (Shape s : shapesList) {
       if (s.isSelected == true && eventType == 4) {
-        s.movePoints(mouseLoc);
+        s.resizePoints(mouseLoc);
+      }
+    }
+  }
+  
+  public void moveObject(PVector mouseLoc, int eventType){
+    for (Shape s : shapesList) {
+      if (s.isSelected == true && eventType == 4) {
+        PVector modifier;
+        modifier = new PVector(mouseLoc.x, mouseLoc.y);
+        modifier.sub(s.pointA);
+        s.movePoints(modifier);
       }
     }
   }

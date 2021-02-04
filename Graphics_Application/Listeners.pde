@@ -83,6 +83,11 @@ public void handleButtonEvents(GButton button, GEvent event) {
     toolMode = "curve";
   }
   
+  if(button == moveButton && event == GEvent.CLICKED){
+    println("Moving Drawn Object!");
+    toolMode = "move";
+  }
+  
   if(button == resetButton && event == GEvent.CLICKED){
     println("Resetting Canvas!");
     toolMode = "reset";
@@ -184,7 +189,5 @@ void handleKnobEvents(GValueControl knob, GEvent event) {
      else if (knob == BFill)
        b2 = knob.getValueI();
   }
-  
-
 
 }
