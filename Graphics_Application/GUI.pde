@@ -7,8 +7,8 @@ GCustomSlider brightness, contrast, thickness;
 GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter, lblShape, lblStroke, lblThickness, lblFill;
 GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton;
-GButton rectButton, ellipseButton, lineButton, selectButton, deleteButton;
-GButton curveButton, resetButton, resizeButton, moveButton;
+GButton rectButton, ellipseButton, lineButton, curveButton, polyButton; 
+GButton selectButton, deleteButton, resetButton, resizeButton, moveButton;
 GKnob RStroke, GStroke, BStroke, RFill, GFill, BFill;
 
 int kx, ky, r, g, b;
@@ -84,26 +84,30 @@ public void GUI(){
   ellipseButton.setTextBold();
   lineButton = new GButton(this, 20, 370, 85, 18);
   lineButton.setText("Line");
-  lineButton.setTextBold();
-  selectButton = new GButton(this, 20, 395, 85, 18);
-  selectButton.setText("Select");
-  selectButton.setTextBold();
-  deleteButton = new GButton(this, 20, 420, 85, 18);
-  deleteButton.setText("Delete");
-  deleteButton.setTextBold();
-  
-  curveButton = new GButton(this, 125, 320, 85, 18);
+  lineButton.setTextBold(); 
+  curveButton = new GButton(this, 20, 395, 85, 18);
   curveButton.setText("Curve");
   curveButton.setTextBold();
+  polyButton = new GButton(this, 20, 420, 85, 18);
+  polyButton.setText("Polyline");
+  polyButton.setTextBold();
+  
+  selectButton = new GButton(this, 125, 320, 85, 18);
+  selectButton.setText("Select");
+  selectButton.setTextBold();
+  deleteButton = new GButton(this, 125, 345, 85, 18);
+  deleteButton.setText("Delete");
+  deleteButton.setTextBold();
   moveButton = new GButton(this, 125, 370, 85, 18);
   moveButton.setText("Move");
   moveButton.setTextBold();
-  resetButton = new GButton(this, 125, 395, 85, 18);
+  resizeButton = new GButton(this, 125, 395, 85, 18);
+  resizeButton.setText("Resize");
+  resizeButton.setTextBold();  
+  resetButton = new GButton(this, 125, 420, 85, 18);
   resetButton.setText("Reset");
   resetButton.setTextBold();
-  resizeButton = new GButton(this, 125, 420, 85, 18);
-  resizeButton.setText("Resize");
-  resizeButton.setTextBold();
+
   
   // Stroke RGB Knobs
   kx = 10;
@@ -140,14 +144,14 @@ public void GUI(){
   BStroke.setLocalColorScheme(G4P.BLUE_SCHEME);   //<>//
 
   // Stroke Thickness Slider
-  lblThickness = new GLabel(this, 20, 20, 200, 1200);
+  lblThickness = new GLabel(this, 20, 20, 200, 1290);
   lblThickness .setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   lblThickness .setText("Stroke Thickness:");
   lblThickness .setTextBold();
-  thickness = new GCustomSlider(this, 20, 20, 200, 1280, "grey_blue");
+  thickness = new GCustomSlider(this, 20, 20, 200, 1350, "grey_blue");
   thickness.setShowDecor(false, true, true, true);
   thickness.setNbrTicks(5);
-  thickness.setLimits(5, 1, 10);
+  thickness.setLimits(4, 1, 10);
   
   // Fill RGB Knobs
   kx2 = 140;

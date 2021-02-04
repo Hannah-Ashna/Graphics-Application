@@ -67,6 +67,16 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("Drawing Lines Mode!");
     toolMode = "line";
   }
+
+  if(button == curveButton && event == GEvent.CLICKED){
+    println("Drawing a Curve!");
+    toolMode = "curve";
+  }
+  
+  if(button == polyButton && event == GEvent.CLICKED){
+    println("Drawing a Polyline!");
+    toolMode = "poly";
+  }
   
   if(button == selectButton && event == GEvent.CLICKED){
     println("Selecting Drawn Object!");
@@ -78,14 +88,14 @@ public void handleButtonEvents(GButton button, GEvent event) {
     toolMode = "delete";
   }
   
-  if(button == curveButton && event == GEvent.CLICKED){
-    println("Drawing a Curve!");
-    toolMode = "curve";
-  }
-  
   if(button == moveButton && event == GEvent.CLICKED){
     println("Moving Drawn Object!");
     toolMode = "move";
+  }
+  
+  if(button == resizeButton && event == GEvent.CLICKED){
+    println("Resize Drawn Object!");
+    toolMode = "resize";
   }
   
   if(button == resetButton && event == GEvent.CLICKED){
@@ -93,10 +103,6 @@ public void handleButtonEvents(GButton button, GEvent event) {
     toolMode = "reset";
   }
   
-  if(button == resizeButton && event == GEvent.CLICKED){
-    println("Resize Drawn Object!");
-    toolMode = "resize";
-  }
 }
 
 // Droplist Events Listener

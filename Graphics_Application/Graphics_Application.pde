@@ -36,6 +36,18 @@ void draw() {
   fill(255, 255, 255);
   square(280, 80, 600);
   
+  // Colour Viewer for RGB Knobs - Stroke
+  strokeWeight(1);
+  stroke(0, 0, 0);
+  fill(r, g, b);
+  square(50, 600, 40);
+  
+  // Colour Viewer for RGB Knobs - Fill
+  strokeWeight(1);
+  stroke(0, 0, 0);
+  fill(r2, g2, b2);
+  square(180, 600, 40);
+  
   // Check if there is any image to be loaded
   if (outputImage != null) {
     image(outputImage, 290, 90);
