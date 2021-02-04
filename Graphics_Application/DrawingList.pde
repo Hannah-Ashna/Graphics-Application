@@ -78,6 +78,14 @@ class DrawingList {
     shapesList = tempShapeList;
   }
   
+  public void resizeObject(PVector mouseLoc, int eventType){
+    for (Shape s : shapesList) {
+      if (s.isSelected == true && eventType == 4) {
+        s.movePoints(mouseLoc);
+      }
+    }
+  }
+  
   // Reset canvas
   public void reset(){
     ArrayList<Shape> tempShapeList = new ArrayList<Shape>();

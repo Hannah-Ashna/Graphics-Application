@@ -50,6 +50,19 @@ class Shape {
     return false;
   }
   
+  // Used in the resize function
+  public void movePoints(PVector point){
+    float diffX, diffY;
+    diffX = this.pointA.x - point.x;
+    diffY = this.pointA.y - point.y;
+    this.pointA.x = point.x;
+    this.pointA.y = point.y;
+    
+    this.pointB.x = pointB.x + (diffX);
+    this.pointB.y = pointB.y + (diffY);
+    
+  }
+  
   
   // Draw the shape object
   public void drawShapes() {
@@ -60,11 +73,26 @@ class Shape {
     float w = x2-x1;
     float h = y2-y1;
     
+    float x3, y3;
+    
+    // Setup the Curve Points
     ArrayList<PVector> points = new ArrayList<PVector>();
     //Add points for the curve
     points.add(new PVector(x1, y1));
-    //points.add(new PVector(x2 + 80, y1 - 75));
-    points.add(new PVector(x2 + 30, y2 +75));
+    
+    if (x2 - 40 < 280){
+      x3 = 300;
+    } else {
+      x3 = x2 - 40;
+    }
+    
+    if (y2 - 75 < 80){
+      y3 = 100;
+    } else {
+      y3 = y2 - 75;
+    }
+    
+    points.add(new PVector(x3, y3));
     points.add(new PVector(x2, y2));
     
     

@@ -8,7 +8,7 @@ GDropList filterOptions;
 GLabel lblBrightness, lblContrast, lblFilter, lblShape, lblStroke, lblThickness, lblFill;
 GButton loadFile, saveFile, reset, saveImage, HSVButton, RGBButton;
 GButton rectButton, ellipseButton, lineButton, selectButton, deleteButton;
-GButton curveButton, resetButton;
+GButton curveButton, resetButton, resizeButton, moveButton;
 GKnob RStroke, GStroke, BStroke, RFill, GFill, BFill;
 
 int kx, ky, r, g, b;
@@ -72,9 +72,9 @@ public void GUI(){
   filterOptions.setItems(options, 0);
   
   // Drawing Buttons
-  lblShape = new GLabel(this, 20, 20, 80, 570);
+  lblShape = new GLabel(this, 20, 20, 200, 570);
   lblShape.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  lblShape.setText("Shapes:");
+  lblShape.setText("Shapes & Curves:");
   lblShape.setTextBold();
   rectButton = new GButton(this, 20, 320, 85, 18);
   rectButton.setText("Rectangle");
@@ -95,9 +95,12 @@ public void GUI(){
   curveButton = new GButton(this, 125, 320, 85, 18);
   curveButton.setText("Curve");
   curveButton.setTextBold();
-  resetButton = new GButton(this, 125, 345, 85, 18);
+  resetButton = new GButton(this, 125, 395, 85, 18);
   resetButton.setText("Reset");
   resetButton.setTextBold();
+  resizeButton = new GButton(this, 125, 420, 85, 18);
+  resizeButton.setText("Resize");
+  resizeButton.setTextBold();
   
   // Stroke RGB Knobs
   kx = 10;

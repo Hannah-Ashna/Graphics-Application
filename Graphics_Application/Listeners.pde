@@ -87,6 +87,11 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("Resetting Canvas!");
     toolMode = "reset";
   }
+  
+  if(button == resizeButton && event == GEvent.CLICKED){
+    println("Resize Drawn Object!");
+    toolMode = "resize";
+  }
 }
 
 // Droplist Events Listener

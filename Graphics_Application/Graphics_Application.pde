@@ -57,6 +57,12 @@ void handleEvent(){
   if(toolMode.equals("delete")){
     drawingList.deleteObject();
   }
+  
+  if(toolMode.equals("resize") && (mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
+    PVector point = new PVector(mouseX, mouseY);
+    int mouseEventType = mouseEvent.getAction();
+    drawingList.resizeObject(point, mouseEventType);
+  }
 }
 
 // For Selecting an Object
