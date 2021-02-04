@@ -190,7 +190,6 @@ class UIRect{
     this.bottom = max(y1,y2);
   }
   
-  
   boolean equals(UIRect other){
     if(left == other.left && top == other.top && 
        right == other.right && bottom == other.bottom) return true;

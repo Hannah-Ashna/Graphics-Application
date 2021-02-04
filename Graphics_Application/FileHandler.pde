@@ -6,7 +6,9 @@ PImage loadedImage;
 PImage outputImage;
 PImage originalImage;
 
+// Open an Image file
 public void openFile(){
+  
     JFileChooser fileChooser = new JFileChooser();
     fileChooser.setDialogTitle("Open an image file"); 
     
@@ -24,7 +26,7 @@ public void openFile(){
     }   
 }
 
-
+// Close and Save an edited Image
 public void closeFile(){
   
   JFileChooser fileChooser = new JFileChooser();

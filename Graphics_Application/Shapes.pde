@@ -45,6 +45,7 @@ class Shape {
     return false;
   }
   
+  // Draw the shape object
   public void drawShapes() {
     float x1 = this.pointA.x;
     float y1 = this.pointA.y;
@@ -71,20 +72,24 @@ class Shape {
       line(x1, y1, x2, y2);
     }
     
+    // Not used due to Canvas issue -- See DrawingList initCanvas() method
     if ( drawingMode == "initial") {
       strokeWeight(2);
       stroke(0, 0, 0);
       fill(255, 255, 255);
       square(280, 80, 600);
     }
+    
   }
   
+  // Change the drawing style of selected shape objects
   void setSelectedDrawingStyle() {
     strokeWeight(2);
     stroke(0, 0, 0);
     fill(255, 100, 100); 
   }
 
+  // Set the default drawing style based on user choice (RGB Knobs)
   void setDefaultDrawingStyle() {
     strokeWeight(thicknessVal);
     stroke(r, g, b);
