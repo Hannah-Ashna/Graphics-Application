@@ -237,7 +237,6 @@ void romcatmullCurve(ArrayList<PVector> points){
    noFill();
    beginShape();
    PVector startPoint = points.get(0);
-   ellipse(startPoint.x, startPoint.y, 5, 5);
    curveVertex(startPoint.x, startPoint.y);
    
    for (PVector p: points) {
@@ -245,8 +244,6 @@ void romcatmullCurve(ArrayList<PVector> points){
     }
     
    PVector endPoint = points.get(points.size()-1);
-   ellipse(endPoint.x, endPoint.y, 5, 5);
    curveVertex(endPoint.x, endPoint.y);    
-   //endShape();
 
 }

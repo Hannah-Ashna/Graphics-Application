@@ -4,6 +4,10 @@ class Shape {
   PVector pointA;
   PVector pointB;
   
+  int R = r, G = g, B = b;
+  int R2 = r2, G2 = g2, B2 = b2;
+  int weight = thicknessVal;
+  
   boolean isSelected = false;
   boolean isBeingDrawn = false;
   boolean curveReady = false;
@@ -108,9 +112,9 @@ class Shape {
 
   // Set the default drawing style based on user choice (RGB Knobs)
   void setDefaultDrawingStyle() {
-    strokeWeight(thicknessVal);
-    stroke(r, g, b);
-    fill(r2, g2, b2);
+    strokeWeight(weight);
+    stroke(R, G, B);
+    fill(R2, G2, B2);
   }
   
   // Using begin and end shape created a duplication issue
