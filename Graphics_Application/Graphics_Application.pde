@@ -9,6 +9,7 @@ import g4p_controls.*;
 import processing.event.MouseEvent;
 
 DrawingList drawingList;
+
 String toolMode = "";
 String mouseEventType = "mousePressed";
 
@@ -20,8 +21,7 @@ void setup(){
   
   // Setup Drawing List
   drawingList = new DrawingList();
-  //drawingList.initCanvas();
-  
+
   // Custom Cursor
   cursor(CROSS);
 }
@@ -56,6 +56,7 @@ void draw() {
   // Check for any drawing events
   handleEvent();
   drawingList.drawShapes();
+
 }
 
 // ---------- Other Functions (Drawing) ----------------
