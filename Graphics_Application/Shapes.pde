@@ -27,8 +27,6 @@ class Shape {
     this.isBeingDrawn = true;
     this.pointA = start;
     this.pointB = start;
-    print(pointA);
-    print(pointB);
   }
 
   // During the drawing of shape object
