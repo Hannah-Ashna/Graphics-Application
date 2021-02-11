@@ -30,18 +30,17 @@ public void handleButtonEvents(GButton button, GEvent event) {
   if(button == saveFile && event == GEvent.CLICKED && loadedImage != null){
     println("Saving File!");
     storeImage = true;
-    //closeFile();
   }
   
   
   if(button == HSVButton && event == GEvent.CLICKED && loadedImage != null){
     println("Converting to HSV!");
-    toHSV();
+    imageStyle = "HSV";
   }
   
   if(button == RGBButton && event == GEvent.CLICKED && loadedImage != null){
     println("Converting to RGB!");
-    outputImage = originalImage.copy();
+    imageStyle = "None";
   }
   
   if(button == rectButton && event == GEvent.CLICKED){

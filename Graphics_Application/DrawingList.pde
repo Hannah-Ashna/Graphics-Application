@@ -142,6 +142,11 @@ class DrawingList {
           imageStyle = "";
         }
         
+        if (effect.equals("HSV")){
+          s.updateImage(toHSV(s.returnOutputImage()));
+          imageStyle = "";
+        }        
+        
         if (effect.equals("None")){
           s.updateImage(s.returnImage());
           imageStyle = "";

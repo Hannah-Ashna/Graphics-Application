@@ -46,22 +46,22 @@ public void GUI(){
   contrast.setLimits(50, 0, 100);
   
   // HSV Button
-  HSVButton = new GButton(this, 20, 200, 100, 18);
+  HSVButton = new GButton(this, 125, 215, 85, 18);
   HSVButton.setText("HSV");
   HSVButton.setTextBold();
   
   // HSV Button
-  RGBButton = new GButton(this,125, 200, 100, 18);
+  RGBButton = new GButton(this, 125, 240, 85, 18);
   RGBButton.setText("RGB");
   RGBButton.setTextBold();
   
   // Filters Dropdown Options
-  lblFilter = new GLabel(this, 20, 8, 80, 470);
+  lblFilter = new GLabel(this, 20, 8, 80, 390);
   lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   lblFilter.setText("Filters:");
   lblFilter.setTextBold();
   String[] options = {"None", "Negative", "Greyscale", "Blur", "Sharpen", "Edge"};
-  filterOptions = new GDropList(this, 22, 250, 80, 70, 5);
+  filterOptions = new GDropList(this, 22, 215, 80, 80, 4);
   filterOptions.setItems(options, 0);
   
   // Drawing Buttons

@@ -74,11 +74,11 @@ public PImage applyPointProcessing(int[] redLUT, int[] greenLUT, int[] blueLUT, 
 
 // ---------------- RGB - HSV Slider --------------------------
 
-public void toHSV() {
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++){
+public PImage toHSV(PImage img) {
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++){
         
-        color thisPix = outputImage.get(x,y);
+        color thisPix = img.get(x,y);
         int r = (int) (red(thisPix));
         int g = (int) (green(thisPix));
         int b = (int) (blue(thisPix));
@@ -98,10 +98,12 @@ public void toHSV() {
         if( hue > 360 ) hue -= 360;
         
         color newRGB =   HSVtoRGB(hue,  sat,  val);
-        outputImage.set(x,y, newRGB);
+        img.set(x, y, newRGB);
       }
     
     }
+    
+    return img;
 }
 // RGB to HSV Conversion
 public float[] RGBtoHSV(float r, float g, float b){
