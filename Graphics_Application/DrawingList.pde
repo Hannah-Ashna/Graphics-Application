@@ -143,7 +143,7 @@ class DrawingList {
         }
         
         if (effect.equals("None")){
-          s.updateImage(s.returnOriginalImage());
+          s.updateImage(s.returnImage());
           imageStyle = "";
         }
         
@@ -164,9 +164,9 @@ class DrawingList {
             for (int x = 0; x < tempImg.width; x++) {
               color convolution = Convolution(x, y, blur_matrix, blur_matrix.length, tempImg);
               outputImg.set(x, y, convolution);
-              s.updateImage(outputImg);
             }
           }
+          s.updateImage(outputImg);
           imageStyle = "";
         }
         
@@ -176,10 +176,10 @@ class DrawingList {
           for (int y = 0; y < tempImg.height; y++) {
             for (int x = 0; x < tempImg.width; x++) {
               color convolution = Convolution(x, y, sharpen_matrix, sharpen_matrix.length, tempImg);
-              outputImg.set(x, y, convolution);
-              s.updateImage(outputImg);
+              outputImg.set(x, y, convolution);   
             }
           }
+          s.updateImage(outputImg);
           imageStyle = "";
         }
         
@@ -190,9 +190,9 @@ class DrawingList {
             for (int x = 0; x < tempImg.width; x++) {
               color convolution = Convolution(x, y, edge_matrix, edge_matrix.length, tempImg);
               outputImg.set(x, y, convolution);
-              s.updateImage(outputImg);
             }
           }
+          s.updateImage(outputImg);
           imageStyle = "";
         }        
       }

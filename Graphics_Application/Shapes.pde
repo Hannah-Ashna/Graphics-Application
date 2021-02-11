@@ -50,10 +50,6 @@ class Shape {
     return null;
   }
   
-  public PImage returnOriginalImage(){
-    return shapeImage.copy();
-  }
-  
   // Start the drawing of shape object
   public void startDrawing(PVector start) {
     this.isBeingDrawn = true;
