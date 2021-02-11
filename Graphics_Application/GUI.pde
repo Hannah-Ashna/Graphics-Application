@@ -18,12 +18,14 @@ public void GUI(){
 
   // Load and Save file Buttons
   loadFile = new GButton(this, 20, 15, 100, 18);
-  loadFile.setText("Load File");
+  loadFile.setText("Load Image");
   loadFile.setTextBold();
   saveFile = new GButton(this, 125, 15, 100, 18);
-  saveFile.setText("Save File");
+  saveFile.setText("Save Image");
   saveFile.setTextBold();
-  
+  reset = new GButton(this, 125, 38, 100, 18);
+  reset.setText("Reset Image");
+  reset.setTextBold();
   
   // Brightness Slider
   lblBrightness = new GLabel(this, 20, 20, 80, 100);

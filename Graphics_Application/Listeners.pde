@@ -32,6 +32,10 @@ public void handleButtonEvents(GButton button, GEvent event) {
     storeImage = true;
   }
   
+  if(button == reset && event == GEvent.CLICKED && loadedImage != null){
+    println("Resetting image");
+    imageStyle = "None";
+  }
   
   if(button == HSVButton && event == GEvent.CLICKED && loadedImage != null){
     println("Converting to HSV!");
