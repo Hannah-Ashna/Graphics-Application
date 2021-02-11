@@ -98,7 +98,7 @@ public void handleButtonEvents(GButton button, GEvent event) {
 
 // Droplist Events Listener
 public void handleDropListEvents(GDropList list, GEvent event) {
-  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Reset" && loadedImage != null){
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "None" && loadedImage != null){
     println("Revert to original");
     imageStyle = "None";
   }
@@ -134,13 +134,13 @@ public void handleSliderEvents(GValueControl slider, GEvent event) {
   if (slider == brightness && event == GEvent.RELEASED && loadedImage != null){
     println("Brightness value: " + slider.getValueI());
     brightnessVal = map(slider.getValueF(), 0, 100, 0.1, 2);
-    Brightness();
+    imageStyle = "Brightness";
   }
   
   if (slider == contrast && event == GEvent.RELEASED && loadedImage != null){
     println("Contrast value: " + slider.getValueI());
     contrastVal = map(slider.getValueF(), 0, 100, 1, 0);
-    Contrast();
+    imageStyle = "Contrast";
   }
   
   if (slider == thickness && event == GEvent.RELEASED){

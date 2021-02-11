@@ -131,6 +131,17 @@ class DrawingList {
   public void applyEffect(String effect){
     for (Shape s : shapesList) {
       if (s.returnImage() != null) {
+        
+        if (effect.equals("Brightness")){
+          s.updateImage(Brightness(s.returnImage()));
+          imageStyle = "";
+        }
+        
+        if (effect.equals("Contrast")){
+          s.updateImage(Contrast(s.returnImage()));
+          imageStyle = "";
+        }
+        
         if (effect.equals("None")){
           s.updateImage(s.returnOriginalImage());
           imageStyle = "";

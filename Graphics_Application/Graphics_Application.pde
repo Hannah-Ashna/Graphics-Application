@@ -103,7 +103,7 @@ void handleEvent(){
   }
   
   // Modify image filter/effect
-  if( (imageStyle.equals("Negative") || imageStyle.equals("Greyscale") || imageStyle.equals("Blur") ||imageStyle.equals("Sharpen") || imageStyle.equals("Edge"))){
+  if( (imageStyle.equals("None") || imageStyle.equals("Negative") || imageStyle.equals("Greyscale") || imageStyle.equals("Blur") ||imageStyle.equals("Sharpen") || imageStyle.equals("Edge") || imageStyle.equals("Brightness") || imageStyle.equals("Contrast"))){
     drawingList.applyEffect(imageStyle);
   }
 }

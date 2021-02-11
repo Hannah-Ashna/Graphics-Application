@@ -3,24 +3,28 @@
 // =====================
 
 // Brighten - Slider
-public void Brightness(){
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++) {
+public PImage Brightness(PImage img){
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
   
-        color thisPix = loadedImage.get(x, y);
+        color thisPix = img.get(x, y);
         float r = red(thisPix) * brightnessVal;
         float g = green(thisPix) * brightnessVal;
         float b = blue(thisPix) * brightnessVal;
         color newColour = color(r, g, b);
-        outputImage.set(x, y, newColour);
+        img.set(x, y, newColour);
       }
     }
+    
+    return img;
 }
 
 // Contrast - Slider (LUT)
-public void Contrast(){
+public PImage Contrast(PImage img){
   int[] lut = makeSigmoidLUT();
-  outputImage = applyPointProcessing(lut, lut, lut, loadedImage);
+  img = applyPointProcessing(lut, lut, lut, img);
+  
+  return img;
 }
 
 // Contrast - Sigmoid Curve

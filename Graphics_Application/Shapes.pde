@@ -19,7 +19,7 @@ class Shape {
   boolean moveReady = false;
   
   //Used to store ImageShape
-  PImage shapeImage, imageOriginal;
+  PImage shapeImage, outputImage;
   
   // Initialise drawn object
   public Shape (String drawingMode) {
@@ -28,7 +28,7 @@ class Shape {
 
   void setImage(PImage img){
     shapeImage = img.copy();
-    imageOriginal = img.copy();
+    outputImage = img.copy();
     PVector start = new PVector (290, 90);
     this.pointA = start; 
     PVector end = new PVector (290 + shapeImage.width, 90 + shapeImage.height);
@@ -36,7 +36,7 @@ class Shape {
   }
   
   void updateImage(PImage img){
-    shapeImage = img;
+    outputImage = img.copy();
   }
   
   public void setImageStyle(String effect){
@@ -51,7 +51,7 @@ class Shape {
   }
   
   public PImage returnOriginalImage(){
-    return imageOriginal.copy();
+    return shapeImage.copy();
   }
   
   // Start the drawing of shape object
@@ -171,9 +171,9 @@ class Shape {
       }
     }
     
-    if (drawingMode == "image" && shapeImage != null){
+    if (drawingMode == "image" && outputImage != null){
       rect(x1 - 1, y1 - 1, w + 1, h + 1);
-      image(shapeImage, x1, y1, w, h);
+      image(outputImage, x1, y1, w, h);
       
     }
 
