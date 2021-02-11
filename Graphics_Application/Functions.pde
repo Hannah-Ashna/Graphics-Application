@@ -174,31 +174,35 @@ public color HSVtoRGB(float hue, float sat, float val)
 
 // ---------------- Other Filters (Dropdown Menu) --------------------------
 
-public void Negative() {
+public PImage Negative(PImage img) {
     int MaxIntensity = 255;
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++) {
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
   
-        color thisPix = loadedImage.get(x, y);
+        color thisPix = img.get(x, y);
         float r = MaxIntensity - red(thisPix);
         float g = MaxIntensity - green(thisPix);
         float b = MaxIntensity - blue(thisPix);
         color newColour = color(r, g, b);
-        outputImage.set(x, y, newColour);      
+        img.set(x, y, newColour);
       }
     } 
+    
+    return img;
 }
 
-public void Greyscale() {
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++) {
+public PImage Greyscale(PImage img) {
+    for (int y = 0; y < img.height; y++) {
+      for (int x = 0; x < img.width; x++) {
   
-        color thisPix = loadedImage.get(x, y);
+        color thisPix = img.get(x, y);
         float r = red(thisPix);
         color newColour = color(r, r, r);
-        outputImage.set(x, y, newColour);      
+        img.set(x, y, newColour);      
       }
     } 
+    
+    return img;
 }
 
 public color Convolution(int Xcen, int Ycen, float[][] matrix, int matrixsize, PImage originalImage)

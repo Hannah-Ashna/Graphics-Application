@@ -26,12 +26,12 @@ public void openFile(){
       Path = Path.replaceAll("\\\\", "/");;
       loadedImage = loadImage(Path);
       outputImage = loadedImage.copy();
-      originalImage = loadedImage.copy();
+      newImage = true;
     }   
 }
 
 // Close and Save an edited Image
-public void closeFile(){
+public void closeFile(PImage image){
   
   JFileChooser fileChooser = new JFileChooser();
   fileChooser.setDialogTitle("Save an image file");   
@@ -40,12 +40,6 @@ public void closeFile(){
   
   if (userSelection == JFileChooser.APPROVE_OPTION) {
     // Simplify the process by saving all files as a .png to avoid the need to convert a PImage to a BufferImage
-    outputImage.save(fileChooser.getSelectedFile() + ".png");
+    image.save(fileChooser.getSelectedFile() + ".png");
   }
-}
-
-// Save any updates made to the image and set it as the loadedImage - base image
-public void saveImage(){
-  loadedImage = outputImage.copy();
-   
 }

@@ -5,6 +5,9 @@
 class DrawingList {
   ArrayList<Shape> shapesList = new ArrayList<Shape>();
   
+  // Used for image-shapes
+  PImage ImageShape;
+  
   public Shape currentlyDrawnShape = null;
   
   public DrawingList() {}
@@ -13,6 +16,11 @@ class DrawingList {
     for (Shape s : shapesList){
       s.drawShapes();
     }
+  }
+  
+  void setImage (PImage img){
+    ImageShape = img;
+    loadNewImage(ImageShape);
   }
   
   // No longer used
@@ -27,6 +35,14 @@ class DrawingList {
       canvasLoc.set(880, 680);
       currentlyDrawnShape.endDrawing(canvasLoc);
   }  
+  
+  // Create a new image shape object
+  public void loadNewImage(PImage img) {
+    Shape newShape = new Shape("image");
+    newShape.setImage(img);
+    shapesList.add(newShape);
+    newImage = false;
+  }
   
   // Capture mouse events to decide what shape to draw
   public void mouseDrawEvent (String shapeType, int eventType, PVector mouseLoc){
@@ -82,6 +98,7 @@ class DrawingList {
     shapesList = tempShapeList;
   }
   
+  // Resize an existing shape object
   public void resizeObject(PVector mouseLoc, int eventType){
     for (Shape s : shapesList) {
       if (s.isSelected == true && eventType == 4) {
@@ -90,6 +107,7 @@ class DrawingList {
     }
   }
   
+  // Move an existing shape object
   public void moveObject(PVector mouseLoc, int eventType){
     for (Shape s : shapesList) {
       if (s.isSelected == true && eventType == 4) {
@@ -97,6 +115,75 @@ class DrawingList {
         modifier = new PVector(mouseLoc.x, mouseLoc.y);
         modifier.sub(s.pointA);
         s.movePoints(modifier);
+      }
+    }
+  }
+  
+  // Save and store an image file locally
+  public void saveImageFile(){
+    for (Shape s : shapesList) {
+      if (s.isSelected == true) {
+        s.saveImage();
+      }
+    }
+  }
+  
+  public void applyEffect(String effect){
+    for (Shape s : shapesList) {
+      if (s.returnImage() != null) {
+        if (effect.equals("None")){
+          s.updateImage(s.returnOriginalImage());
+          imageStyle = "";
+        }
+        
+        if (effect.equals("Negative")){
+          s.updateImage(Negative(s.returnImage()));
+          imageStyle = "";
+        }
+        
+        if (effect.equals("Greyscale")){
+          s.updateImage(Greyscale(s.returnImage()));
+          imageStyle = "";
+        }
+        
+        if (effect.equals("Blur")){
+          PImage tempImg = s.returnImage();
+          PImage outputImg = tempImg.copy();
+          for (int y = 0; y < tempImg.height; y++) {
+            for (int x = 0; x < tempImg.width; x++) {
+              color convolution = Convolution(x, y, blur_matrix, blur_matrix.length, tempImg);
+              outputImg.set(x, y, convolution);
+              s.updateImage(outputImg);
+            }
+          }
+          imageStyle = "";
+        }
+        
+        if (effect.equals("Sharpen")){
+          PImage tempImg = s.returnImage();
+          PImage outputImg = tempImg.copy();
+          for (int y = 0; y < tempImg.height; y++) {
+            for (int x = 0; x < tempImg.width; x++) {
+              color convolution = Convolution(x, y, sharpen_matrix, sharpen_matrix.length, tempImg);
+              outputImg.set(x, y, convolution);
+              s.updateImage(outputImg);
+            }
+          }
+          imageStyle = "";
+        }
+        
+        if (effect.equals("Edge")){
+          PImage tempImg = s.returnImage();
+          PImage outputImg = tempImg.copy();
+          for (int y = 0; y < tempImg.height; y++) {
+            for (int x = 0; x < tempImg.width; x++) {
+              color convolution = Convolution(x, y, edge_matrix, edge_matrix.length, tempImg);
+              outputImg.set(x, y, convolution);
+              s.updateImage(outputImg);
+            }
+          }
+          imageStyle = "";
+        }        
       }
     }
   }

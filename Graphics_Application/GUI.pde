@@ -24,13 +24,6 @@ public void GUI(){
   saveFile.setText("Save File");
   saveFile.setTextBold();
   
-  // Load and Save file Buttons
-  saveImage = new GButton(this, 20, 38, 100, 18);
-  saveImage.setText("Save");
-  saveImage.setTextBold();
-  reset = new GButton(this, 125, 38, 100, 18);
-  reset.setText("Reset");
-  reset.setTextBold();
   
   // Brightness Slider
   lblBrightness = new GLabel(this, 20, 20, 80, 100);
@@ -63,12 +56,12 @@ public void GUI(){
   RGBButton.setTextBold();
   
   // Filters Dropdown Options
-  lblFilter = new GLabel(this, 20, 20, 80, 470);
+  lblFilter = new GLabel(this, 20, 8, 80, 470);
   lblFilter.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   lblFilter.setText("Filters:");
   lblFilter.setTextBold();
   String[] options = {"None", "Negative", "Greyscale", "Blur", "Sharpen", "Edge"};
-  filterOptions = new GDropList(this, 22, 270, 80, 100, 6);
+  filterOptions = new GDropList(this, 22, 250, 80, 70, 5);
   filterOptions.setItems(options, 0);
   
   // Drawing Buttons

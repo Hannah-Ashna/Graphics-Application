@@ -5,6 +5,7 @@
 class Shape {
 
   String drawingMode = "";
+  String imageStyle = "";
   PVector pointA;
   PVector pointB;
 
@@ -17,11 +18,42 @@ class Shape {
   boolean curveReady = false;
   boolean moveReady = false;
   
+  //Used to store ImageShape
+  PImage shapeImage, imageOriginal;
+  
   // Initialise drawn object
   public Shape (String drawingMode) {
     this.drawingMode = drawingMode;
   }
 
+  void setImage(PImage img){
+    shapeImage = img.copy();
+    imageOriginal = img.copy();
+    PVector start = new PVector (290, 90);
+    this.pointA = start; 
+    PVector end = new PVector (290 + shapeImage.width, 90 + shapeImage.height);
+    this.pointB = end;
+  }
+  
+  void updateImage(PImage img){
+    shapeImage = img;
+  }
+  
+  public void setImageStyle(String effect){
+    this.imageStyle = effect;
+  }
+  
+  public PImage returnImage(){
+    if (shapeImage != null) {
+      return shapeImage.copy();
+    }
+    return null;
+  }
+  
+  public PImage returnOriginalImage(){
+    return imageOriginal.copy();
+  }
+  
   // Start the drawing of shape object
   public void startDrawing(PVector start) {
     this.isBeingDrawn = true;
@@ -72,6 +104,12 @@ class Shape {
     this.pointA.y += modifier.y;
     this.pointB.x += modifier.x;
     this.pointB.y += modifier.y;
+  }
+  
+  // Save an image
+  public void saveImage(){
+    closeFile(shapeImage);
+    storeImage = false;
   }
 
 
@@ -131,6 +169,12 @@ class Shape {
       if (this.curveReady == true) {
         endShape();
       }
+    }
+    
+    if (drawingMode == "image" && shapeImage != null){
+      rect(x1 - 1, y1 - 1, w + 1, h + 1);
+      image(shapeImage, x1, y1, w, h);
+      
     }
 
     // Not used due to Canvas issue -- See DrawingList initCanvas() method

@@ -11,7 +11,10 @@ import processing.event.MouseEvent;
 DrawingList drawingList;
 
 String toolMode = "";
+String imageStyle = "";
 String mouseEventType = "mousePressed";
+boolean newImage = false;
+boolean storeImage = false;
 
 void setup(){
   size(900, 800);
@@ -48,9 +51,9 @@ void draw() {
   fill(r2, g2, b2);
   square(180, 600, 40);
   
-  // Check if there is any image to be loaded
-  if (outputImage != null) {
-    image(outputImage, 290, 90);
+  // Check if there is any new image to be loaded
+  if (newImage == true && outputImage != null) {
+    drawingList.setImage(outputImage);
   }
   
   // Check for any drawing events
@@ -92,6 +95,16 @@ void handleEvent(){
     PVector point = new PVector(mouseX, mouseY);
     int mouseEventType = mouseEvent.getAction();
     drawingList.resizeObject(point, mouseEventType);
+  }
+  
+  // Saving and storing an image shape object file
+  if(toolMode.equals("select") && storeImage == true){
+    drawingList.saveImageFile();
+  }
+  
+  // Modify image filter/effect
+  if( (imageStyle.equals("Negative") || imageStyle.equals("Greyscale") || imageStyle.equals("Blur") ||imageStyle.equals("Sharpen") || imageStyle.equals("Edge"))){
+    drawingList.applyEffect(imageStyle);
   }
 }
 

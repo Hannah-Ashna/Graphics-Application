@@ -29,19 +29,10 @@ public void handleButtonEvents(GButton button, GEvent event) {
   
   if(button == saveFile && event == GEvent.CLICKED && loadedImage != null){
     println("Saving File!");
-    closeFile();
+    storeImage = true;
+    //closeFile();
   }
   
-  if(button == saveImage && event == GEvent.CLICKED && loadedImage != null){
-    println("Saving updates to Image");
-    saveImage();
-  }
-  
-  if(button == reset && event == GEvent.CLICKED && originalImage != null){
-    println("Resetting Image");
-    loadedImage = originalImage.copy();
-    outputImage = originalImage.copy();
-  }
   
   if(button == HSVButton && event == GEvent.CLICKED && loadedImage != null){
     println("Converting to HSV!");
@@ -107,49 +98,34 @@ public void handleButtonEvents(GButton button, GEvent event) {
 
 // Droplist Events Listener
 public void handleDropListEvents(GDropList list, GEvent event) {
-  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "None" && loadedImage != null){
+  if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Reset" && loadedImage != null){
     println("Revert to original");
-    outputImage = loadedImage.copy();
+    imageStyle = "None";
   }
   
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Negative" && loadedImage != null){
     println("Negative Filter!");
-    Negative();
+    imageStyle = "Negative";
   }
   
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Greyscale" && loadedImage != null){
     println("Greyscale Filter!");
-    Greyscale();
+    imageStyle = "Greyscale";
   }
   
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Blur" && loadedImage != null){
     println("Blur Filter!");
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++) {
-        color convolution = Convolution(x, y, blur_matrix, blur_matrix.length, loadedImage);
-        outputImage.set(x, y, convolution);
-      }
-    }
+    imageStyle = "Blur";
   }
   
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Sharpen" && loadedImage != null){
     println("Sharpen Filter!");
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++) {
-        color convolution = Convolution(x, y, edge_matrix, edge_matrix.length, loadedImage);
-        outputImage.set(x, y, convolution);
-      }
-    }
+    imageStyle = "Sharpen";
   }
   
   if(list == filterOptions && event == GEvent.SELECTED && list.getSelectedText() == "Edge" && loadedImage != null){
     println("Edge Filter!");
-    for (int y = 0; y < loadedImage.height; y++) {
-      for (int x = 0; x < loadedImage.width; x++) {
-        color convolution = Convolution(x, y, sharpen_matrix, sharpen_matrix.length, loadedImage);
-        outputImage.set(x, y, convolution);
-      }
-    }
+    imageStyle = "Edge";
   }
 }
 
