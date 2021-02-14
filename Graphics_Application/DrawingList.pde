@@ -49,11 +49,13 @@ class DrawingList {
     
     if (eventType == 1) {
       println("Mouse Pressed");
-      //beginShape();
       Shape newShape = new Shape(shapeType);
       newShape.startDrawing(mouseLoc);
       shapesList.add(newShape);
       currentlyDrawnShape = newShape;
+      if (shapeType == "poly" || shapeType == "curve"){
+        currentlyDrawnShape.addPolyPoints(mouseLoc);        
+      }
       
     }
     
@@ -62,8 +64,19 @@ class DrawingList {
       
       // Draw the curve to allow user to see the curve being moved
       if (shapeType == "curve"){
+        if (keyPressed == true) {
+         currentlyDrawnShape.addPolyPoints(mouseLoc);
          currentlyDrawnShape.drawCurve();
-      } 
+        }
+      }
+      
+      if (shapeType == "poly"){
+        if (keyPressed == true) {
+          currentlyDrawnShape.addPolyPoints(mouseLoc);
+          currentlyDrawnShape.drawPolygon();
+        }
+      }
+      
       currentlyDrawnShape.duringDrawing(mouseLoc);
     }
 
@@ -72,8 +85,19 @@ class DrawingList {
       
       // Draw the final curve
       if (shapeType == "curve"){
+        if (keyPressed == true) {
+         currentlyDrawnShape.addPolyPoints(mouseLoc);
          currentlyDrawnShape.drawCurve();
+        }
       }
+           
+      if (shapeType == "poly"){
+        if (keyPressed == true) {
+          currentlyDrawnShape.addPolyPoints(mouseLoc);
+          currentlyDrawnShape.drawPolygon();
+        }
+      }
+      
       currentlyDrawnShape.endDrawing(mouseLoc);      
     }
   }

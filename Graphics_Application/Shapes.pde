@@ -16,10 +16,13 @@ class Shape {
   boolean isSelected = false;
   boolean isBeingDrawn = false;
   boolean curveReady = false;
-  boolean moveReady = false;
+  boolean polygonReady = false;
+//boolean moveReady = false;
   
   //Used to store ImageShape
   PImage shapeImage, outputImage;
+  
+  ArrayList<PVector> polyPoints = new ArrayList<PVector>();
   
   // Initialise drawn object
   public Shape (String drawingMode) {
@@ -77,6 +80,10 @@ class Shape {
     this.isBeingDrawn = false;
   }
 
+  public void addPolyPoints(PVector point) {
+    polyPoints.add(point);
+  }
+
   // Select a drawn shape object
   public boolean toggleSelect(PVector point) {
     UIRect selectionRegion = new UIRect(pointA, pointB);
@@ -126,27 +133,6 @@ class Shape {
     
     float w = x2-x1;
     float h = y2-y1;
-    
-    // Setup the Curve Points
-    float x3, y3;
-    ArrayList<PVector> points = new ArrayList<PVector>();
-    //Add points for the curve
-    points.add(new PVector(x1, y1));
-
-    if (x2 - 40 < 280) {
-      x3 = 300;
-    } else {
-      x3 = x2 - 40;
-    }
-
-    if (y2 - 75 < 80) {
-      y3 = 100;
-    } else {
-      y3 = y2 - 75;
-    }
-
-    points.add(new PVector(x3, y3));
-    points.add(new PVector(x2, y2));
 
 
     if (this.isSelected) {
@@ -168,9 +154,28 @@ class Shape {
     }
 
     if (drawingMode == "curve") {
-      romcatmullCurve(points);
+      romcatmullCurve(polyPoints);
       if (this.curveReady == true) {
         endShape();
+      }
+    }
+    
+    if (drawingMode == "poly") {      
+      if (this.polygonReady == true) {
+        
+        int length = polyPoints.size();
+        PVector endPoint = polyPoints.get(length - 1);
+        PVector startPoint = polyPoints.get(0);
+        
+        if (endPoint.x == startPoint.x && endPoint.y == startPoint.y){
+          polygon(polyPoints);
+          endShape(CLOSE);
+        }
+        
+        else {
+          polyLine(polyPoints);
+          endShape();
+        }
       }
     }
     
@@ -207,6 +212,10 @@ class Shape {
   // This boolean ensures that the shape is only ended once we're done with the curve
   public void drawCurve() {
     this.curveReady = true;
+  }
+  
+  public void drawPolygon() {
+    this.polygonReady = true;
   }
   
 }

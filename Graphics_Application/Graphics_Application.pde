@@ -66,7 +66,7 @@ void draw() {
 
 // Monitors button and mouse events for Drawing
 void handleEvent(){
-  if ((toolMode.equals("rect") || toolMode.equals("ellipse") || toolMode.equals("line") || toolMode.equals("curve")) && (mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
+  if ((toolMode.equals("rect") || toolMode.equals("ellipse") || toolMode.equals("line") || toolMode.equals("curve") || toolMode.equals("poly")) && (mouseX > 280 && mouseX < 880) && (mouseY > 80 && mouseY <680)){
     int mouseEventType = mouseEvent.getAction(); //mouseEvent is deprecated eventually need to seek an alternative
     PVector point = new PVector(mouseX, mouseY);
     drawingList.mouseDrawEvent(toolMode, mouseEventType, point);

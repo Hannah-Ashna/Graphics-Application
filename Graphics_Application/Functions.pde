@@ -257,3 +257,22 @@ void romcatmullCurve(ArrayList<PVector> points){
    curveVertex(endPoint.x, endPoint.y);    
 
 }
+
+void polygon (ArrayList<PVector> points){
+  beginShape();
+  for (PVector p: points) {
+    float sx = p.x;
+    float sy = p.y;
+    vertex(sx, sy);
+  }
+}
+
+void polyLine (ArrayList<PVector> points){
+  noFill();
+  beginShape();
+  for (PVector p: points) {
+    float sx = p.x;
+    float sy = p.y;
+    vertex(sx, sy);
+  }
+}
