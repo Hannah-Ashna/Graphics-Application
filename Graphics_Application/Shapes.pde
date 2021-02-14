@@ -17,11 +17,11 @@ class Shape {
   boolean isBeingDrawn = false;
   boolean curveReady = false;
   boolean polygonReady = false;
-//boolean moveReady = false;
   
   //Used to store ImageShape
   PImage shapeImage, outputImage;
   
+  // Used to store polyline points
   ArrayList<PVector> polyPoints = new ArrayList<PVector>();
   
   // Initialise drawn object
@@ -167,7 +167,12 @@ class Shape {
         PVector endPoint = polyPoints.get(length - 1);
         PVector startPoint = polyPoints.get(0);
         
-        if (endPoint.x == startPoint.x && endPoint.y == startPoint.y){
+        // Create a box to allow for user inaccuracies in selecting the exact starting point
+        
+        PVector bbTop = new PVector (startPoint.x - 5,startPoint.y - 5);
+        PVector bbBot = new PVector (startPoint.x + 5,startPoint.y + 5);
+        
+        if ((bbTop.x <= endPoint.x && endPoint.x <= bbBot.x) && (bbTop.y <= endPoint.y && endPoint.y <= bbBot.y)){
           polygon(polyPoints);
           endShape(CLOSE);
         }
