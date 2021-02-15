@@ -116,6 +116,4 @@ void mousePressed(){
     PVector point = new PVector(mouseX, mouseY);
     drawingList.selectObject(mouseEventType, point);
   }
-  
-
 }

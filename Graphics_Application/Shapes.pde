@@ -1,6 +1,7 @@
 // =====================
 //      Shape Class
 // =====================
+import java.util.Random;
 
 class Shape {
 
@@ -23,6 +24,10 @@ class Shape {
   
   // Used to store polyline points
   ArrayList<PVector> polyPoints = new ArrayList<PVector>();
+  
+  Random ran = new Random();   
+  int RandValue1 = 30 + ran.nextInt(70 - 30 + 1);
+  int RandValue2 = 30 + ran.nextInt(70 - 30 + 1);
   
   // Initialise drawn object
   public Shape (String drawingMode) {
@@ -154,7 +159,12 @@ class Shape {
     }
 
     if (drawingMode == "curve") {
-      romcatmullCurve(polyPoints);
+      ArrayList<PVector> curvePoints = new ArrayList<PVector>();
+      curvePoints.add(pointA);
+      PVector newPoint = new PVector((pointA.x + pointB.x)/2 + RandValue1, (pointA.y + pointB.y)/2 + RandValue2);
+      curvePoints.add(newPoint);
+      curvePoints.add(pointB);
+      romcatmullCurve(curvePoints);
       if (this.curveReady == true) {
         endShape();
       }
@@ -173,6 +183,8 @@ class Shape {
         PVector bbBot = new PVector (startPoint.x + 5,startPoint.y + 5);
         
         if ((bbTop.x <= endPoint.x && endPoint.x <= bbBot.x) && (bbTop.y <= endPoint.y && endPoint.y <= bbBot.y)){
+          polyPoints.remove(polyPoints.size()-1);
+          polyPoints.add(polyPoints.get(0));
           polygon(polyPoints);
           endShape(CLOSE);
         }
