@@ -25,9 +25,10 @@ class Shape {
   // Used to store polyline points
   ArrayList<PVector> polyPoints = new ArrayList<PVector>();
   
-  Random ran = new Random();   
-  int RandValue1 = 30 + ran.nextInt(70 - 30 + 1);
-  int RandValue2 = 30 + ran.nextInt(70 - 30 + 1);
+  //int RandValue1 = 30 + ran.nextInt(70 - 30 + 1);
+  int RandValue1 = -90 + (int)(Math.random() * 100);
+  //int RandValue2 = 30 + ran.nextInt(70 - 30 + 1);
+  int RandValue2 = -90 + (int)(Math.random() * 200);
   
   // Initialise drawn object
   public Shape (String drawingMode) {
