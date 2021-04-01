@@ -87,7 +87,16 @@ class Shape {
   }
 
   public void addPolyPoints(PVector point) {
-    polyPoints.add(point);
+    if (polyPoints.size() == 0) {
+      polyPoints.add(point);
+    }
+    
+    else {
+      if (point.x != polyPoints.get(polyPoints.size() - 1).x && point.y != polyPoints.get(polyPoints.size() - 1).y){
+        println("AH");
+        polyPoints.add(point);
+      }
+    }
   }
 
   // Select a drawn shape object
@@ -160,15 +169,10 @@ class Shape {
     }
 
     if (drawingMode == "curve") {
-      ArrayList<PVector> curvePoints = new ArrayList<PVector>();
-      curvePoints.add(pointA);
-      PVector newPoint = new PVector((pointA.x + pointB.x)/2 + RandValue1, (pointA.y + pointB.y)/2 + RandValue2);
-      curvePoints.add(newPoint);
-      curvePoints.add(pointB);
-      romcatmullCurve(curvePoints);
-      if (this.curveReady == true) {
+      if (this.curveReady == true){
+        romcatmullCurve(polyPoints);
         endShape();
-      }
+      }      
     }
     
     if (drawingMode == "poly") {      

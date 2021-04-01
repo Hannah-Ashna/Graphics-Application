@@ -64,8 +64,9 @@ class DrawingList {
       
       // Draw the curve to allow user to see the curve being moved
       if (shapeType == "curve"){
-        currentlyDrawnShape.addPolyPoints(mouseLoc);
-        currentlyDrawnShape.drawCurve();
+        if (keyPressed == true) {
+          currentlyDrawnShape.addPolyPoints(mouseLoc);
+        }
       }
       
       if (shapeType == "poly"){
@@ -83,15 +84,13 @@ class DrawingList {
       
       // Draw the final curve
       if (shapeType == "curve"){
-        currentlyDrawnShape.addPolyPoints(mouseLoc);
-        currentlyDrawnShape.drawCurve();
+          currentlyDrawnShape.addPolyPoints(mouseLoc);
+          currentlyDrawnShape.drawCurve();
       }
            
       if (shapeType == "poly"){
-        if (keyPressed == true) {
           currentlyDrawnShape.addPolyPoints(mouseLoc);
           currentlyDrawnShape.drawPolygon();
-        }
       }
       
       currentlyDrawnShape.endDrawing(mouseLoc);      
