@@ -59,7 +59,14 @@ void draw() {
   // Check for any drawing events
   handleEvent();
   drawingList.drawShapes();
-
+  
+  // Prevent overflow
+  noStroke();
+  fill(134, 136, 138);
+  rect(0,0, 280, 800);
+  rect(280, 0, 620, 80);
+  rect(280, 681, 620, 120);
+  rect(881, 0, 20, 800);
 }
 
 // ---------- Other Functions (Drawing) ----------------
