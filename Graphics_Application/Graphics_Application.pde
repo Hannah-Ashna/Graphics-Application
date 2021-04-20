@@ -14,7 +14,6 @@ String toolMode = "";
 String imageStyle = "";
 String mouseEventType = "mousePressed";
 boolean newImage = false;
-boolean storeImage = false;
 
 void setup(){
   size(900, 800);
@@ -39,18 +38,6 @@ void draw() {
   fill(255, 255, 255);
   square(280, 80, 600);
   
-  // Colour Viewer for RGB Knobs - Stroke
-  strokeWeight(1);
-  stroke(0, 0, 0);
-  fill(r, g, b);
-  square(50, 600, 40);
-  
-  // Colour Viewer for RGB Knobs - Fill
-  strokeWeight(1);
-  stroke(0, 0, 0);
-  fill(r2, g2, b2);
-  square(180, 600, 40);
-  
   // Check if there is any new image to be loaded
   if (newImage == true && outputImage != null) {
     drawingList.setImage(outputImage);
@@ -67,6 +54,18 @@ void draw() {
   rect(280, 0, 620, 80);
   rect(280, 681, 620, 120);
   rect(881, 0, 20, 800);
+  
+  // Colour Viewer for RGB Knobs - Stroke
+  strokeWeight(1);
+  stroke(0, 0, 0);
+  fill(r, g, b);
+  square(50, 600, 40);
+  
+  // Colour Viewer for RGB Knobs - Fill
+  strokeWeight(1);
+  stroke(0, 0, 0);
+  fill(r2, g2, b2);
+  square(180, 600, 40);
 }
 
 // ---------- Other Functions (Drawing) ----------------
@@ -102,11 +101,6 @@ void handleEvent(){
     PVector point = new PVector(mouseX, mouseY);
     int mouseEventType = mouseEvent.getAction();
     drawingList.resizeObject(point, mouseEventType);
-  }
-  
-  // Saving and storing an image shape object file
-  if(toolMode.equals("select") && storeImage == true){
-    drawingList.saveImageFile();
   }
   
   // Modify image filter/effect

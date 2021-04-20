@@ -27,9 +27,9 @@ public void handleButtonEvents(GButton button, GEvent event) {
     openFile();
   }
   
-  if(button == saveFile && event == GEvent.CLICKED && loadedImage != null){
+  if(button == saveFile && event == GEvent.CLICKED){
     println("Saving File!");
-    storeImage = true;
+    closeFile();
   }
   
   if(button == reset && event == GEvent.CLICKED && loadedImage != null){

@@ -8,7 +8,6 @@ import java.io.FileWriter;
 
 PImage loadedImage;
 PImage outputImage;
-PImage originalImage;
 
 // Open an Image file
 public void openFile(){
@@ -31,7 +30,7 @@ public void openFile(){
 }
 
 // Close and Save an edited Image
-public void closeFile(PImage image){
+public void closeFile(){
   
   JFileChooser fileChooser = new JFileChooser();
   fileChooser.setDialogTitle("Save an image file");   
@@ -40,6 +39,7 @@ public void closeFile(PImage image){
   
   if (userSelection == JFileChooser.APPROVE_OPTION) {
     // Simplify the process by saving all files as a .png to avoid the need to convert a PImage to a BufferImage
-    image.save(fileChooser.getSelectedFile() + ".png");
+    PImage saveImg = get(280, 80, 600, 600);
+    saveImg.save(fileChooser.getSelectedFile() + ".png");
   }
 }

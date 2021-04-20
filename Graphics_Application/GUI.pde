@@ -136,7 +136,7 @@ public void GUI(){
   BStroke.setArcPolicy(true, true, true);
   BStroke.setLimits(b, 0, 255);
   BStroke.setNbrTicks(9);
-  BStroke.setLocalColorScheme(G4P.BLUE_SCHEME);   //<>// //<>// //<>//
+  BStroke.setLocalColorScheme(G4P.BLUE_SCHEME);   //<>// //<>// //<>// //<>//
 
   // Stroke Thickness Slider
   lblThickness = new GLabel(this, 20, 20, 200, 1290);
@@ -182,7 +182,7 @@ public void GUI(){
   BFill.setNbrTicks(9);
   BFill.setLocalColorScheme(G4P.BLUE_SCHEME);  
   
- //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>//
 }
 
 // For Selection within the Canvas

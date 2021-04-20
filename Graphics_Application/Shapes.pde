@@ -130,14 +130,6 @@ class Shape {
     this.pointB.x += modifier.x;
     this.pointB.y += modifier.y;
   }
-  
-  // Save an image
-  public void saveImage(){
-    closeFile(shapeImage);
-    storeImage = false;
-  }
-
-
 
   // Draw the shape object
   public void drawShapes() {

@@ -138,15 +138,6 @@ class DrawingList {
     }
   }
   
-  // Save and store an image file locally
-  public void saveImageFile(){
-    for (Shape s : shapesList) {
-      if (s.isSelected == true) {
-        s.saveImage();
-      }
-    }
-  }
-  
   public void applyEffect(String effect){
     for (Shape s : shapesList) {
       if (s.returnImage() != null) {
